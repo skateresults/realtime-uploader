@@ -12,4 +12,4 @@ COPY build .
 
 ENV NODE_ENV production
 
-CMD ["pnpm", "start"]
+CMD ["node", "."]
