@@ -1,0 +1,4 @@
+{
+  "extends": ["github>skateresults/renovate-config:app"],
+  "npmrc": "@skateresults:registry=https://npm.pkg.github.com/"
+}
