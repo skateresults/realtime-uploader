@@ -8,6 +8,13 @@ import { createAthletesCache } from "./services/athletesCache.js";
 import { ResultCalculator } from "./services/ResultCalculator.js";
 import { retryUntilSuccess } from "./utils/retry.js";
 
+const stopFns: (() => void)[] = [];
+
+process.on("SIGINT", () => {
+  stopFns.forEach((stop) => stop());
+  process.exit();
+});
+
 const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
 const skateResultsClient = createSkateResultsClient(config);
@@ -36,7 +43,7 @@ const athletesCache = await retryUntilSuccess(
   logger
 );
 
-const stopFns: (() => void)[] = [athletesCache.stop];
+stopFns.push(athletesCache.stop);
 
 const resultsCalculator = new ResultCalculator(logger);
 
@@ -86,9 +93,3 @@ stopFns.push(
     logger,
   })
 );
-
-process.on("SIGINT", () => {
-  stopFns.forEach((stop) => stop());
-
-  process.exit();
-});
