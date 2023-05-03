@@ -8,10 +8,10 @@ import { createAthletesCache } from "./services/athletesCache.js";
 import { ResultCalculator } from "./services/ResultCalculator.js";
 import { retryUntilSuccess } from "./utils/retry.js";
 
-const stopFns: (() => void)[] = [];
+const abortController = new AbortController();
 
 process.on("SIGINT", () => {
-  stopFns.forEach((stop) => stop());
+  abortController.abort();
   process.exit();
 });
 
@@ -23,73 +23,73 @@ const resultboardClient = createResultboardClient(config);
 
 logger.debug("Config", config);
 
-const event = await retryUntilSuccess(
-  () => skateResultsClient.event.get(config.event),
-  logger
-);
+const event = await retryUntilSuccess({
+  fn: () => skateResultsClient.event.get(config.event),
+  logger,
+  signal: abortController.signal,
+});
 if (!event) {
   logger.error("Could not find event");
   process.exit(1);
 }
 logger.info(`Event: ${event.name}`);
 
-const athletesCache = await retryUntilSuccess(
-  () =>
+const athletesCache = await retryUntilSuccess({
+  fn: () =>
     createAthletesCache({
       client: skateResultsClient,
       eventId: event.id,
       logger,
+      signal: abortController.signal,
     }),
-  logger
-);
-
-stopFns.push(athletesCache.stop);
+  logger,
+  signal: abortController.signal,
+});
 
 const resultsCalculator = new ResultCalculator(logger);
 
-stopFns.push(
-  createPoller({
-    name: "Upload",
-    interval: config.interval,
-    poll: async () => {
-      const [leaderboardData, resultboardData] = await Promise.all([
-        leaderboardClient.poll(),
-        resultboardClient.poll().catch((e) => {
-          logger.error(e);
-          return null;
-        }),
-      ]);
+createPoller({
+  name: "Upload",
+  interval: config.interval,
+  signal: abortController.signal,
+  poll: async () => {
+    const [leaderboardData, resultboardData] = await Promise.all([
+      leaderboardClient.poll(),
+      resultboardClient.poll().catch((e) => {
+        logger.error(e);
+        return null;
+      }),
+    ]);
 
-      return resultsCalculator.calculate({
-        leaderboardData,
-        resultboardData,
-        athletes: athletesCache.getAthletes(),
-      });
-    },
-    onChange: async (data) => {
-      if (data) {
-        logger.info(
-          [
-            "[Upload]",
-            `'${data.name}'`,
-            `(race ${data.id})`,
-            "-",
-            ...(data.laps
-              ? [
-                  `${data.laps.done.toString().padStart(2, " ")}/${
-                    data.laps.total
-                  }`,
-                ]
-              : []),
-            data.status,
-          ].join(" ")
-        );
-        await skateResultsClient.live.update(event.id, data);
-      } else {
-        logger.info("[Upload] Deleting live results");
-        await skateResultsClient.live.delete(event.id);
-      }
-    },
-    logger,
-  })
-);
+    return resultsCalculator.calculate({
+      leaderboardData,
+      resultboardData,
+      athletes: athletesCache.getAthletes(),
+    });
+  },
+  onChange: async (data) => {
+    if (data) {
+      logger.info(
+        [
+          "[Upload]",
+          `'${data.name}'`,
+          `(race ${data.id})`,
+          "-",
+          ...(data.laps
+            ? [
+                `${data.laps.done.toString().padStart(2, " ")}/${
+                  data.laps.total
+                }`,
+              ]
+            : []),
+          data.status,
+        ].join(" ")
+      );
+      await skateResultsClient.live.update(event.id, data);
+    } else {
+      logger.info("[Upload] Deleting live results");
+      await skateResultsClient.live.delete(event.id);
+    }
+  },
+  logger,
+});

@@ -6,19 +6,21 @@ interface Options {
   client: ReturnType<typeof createSkateResultsClient>;
   eventId: string;
   logger: Logger;
+  signal: AbortSignal;
 }
 
 export async function createAthletesCache({
   client,
   eventId,
   logger,
+  signal,
 }: Options) {
   let athletes = await client.athlete.getAll(eventId);
   if (!athletes) {
     throw new Error("Could not find athletes");
   }
 
-  const stop = createPoller({
+  createPoller({
     name: "Athletes",
     interval: 5 * 60 * 1_000,
     logger,
@@ -26,12 +28,12 @@ export async function createAthletesCache({
     onChange: (newAthletes) => {
       athletes = newAthletes;
     },
+    signal,
   });
 
   return {
     getAthletes() {
       return athletes.items;
     },
-    stop,
   };
 }

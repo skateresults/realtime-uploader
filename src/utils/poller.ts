@@ -8,6 +8,7 @@ interface Options<T> {
   onChange: (newValue: T) => void | Promise<void>;
   interval: number;
   logger: Logger;
+  signal: AbortSignal;
 }
 
 export function createPoller<T>({
@@ -16,7 +17,8 @@ export function createPoller<T>({
   onChange,
   interval,
   logger,
-}: Options<T>): () => void {
+  signal,
+}: Options<T>): void {
   let prevResult: T | undefined;
 
   async function tick() {
@@ -39,12 +41,11 @@ export function createPoller<T>({
     }
   }
 
-  const stop = createInterval({
+  createInterval({
     tick,
     interval,
+    signal,
   });
 
   logger.info(`[${name}] Starting poller`);
-
-  return stop;
 }
