@@ -27,10 +27,11 @@ export type ResultboardData =
 
 export interface ResultboardDataTime {
   Race: ResultboardDataRace<"Time">;
-  PointResults: ResultboardDataPointResult[];
+  PointResults: [];
   Eliminations: [];
   FinishOrder: [];
   EliminationResults: [];
+  TimeResults: ResultboardDataTimeResult[];
 }
 
 export interface ResultboardDataPoints {
@@ -95,4 +96,12 @@ export interface ResultboardDataEliminationResult {
   LastName: string;
   FinishOrder: number;
   Eliminated: number;
+}
+
+export interface ResultboardDataTimeResult {
+  Place: number | null;
+  Startnumber: number;
+  FirstName: string;
+  LastName: string;
+  FinishTime: string | null;
 }

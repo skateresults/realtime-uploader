@@ -1,6 +1,7 @@
 import type { Athlete } from "@skateresults/api-client";
 import { formatISO, subSeconds } from "date-fns";
 import type { Logger } from "../Logger.js";
+import { parseTime } from "../utils/time.js";
 import type { LeaderboardData } from "./leaderboardClient.js";
 import type { ResultboardData } from "./resultboardClient.js";
 import {
@@ -8,7 +9,6 @@ import {
   getPointsByBIB,
 } from "./resultboardUtils.js";
 import type { LiveData } from "./skateResultsClient.js";
-import { parseTime } from "../utils/time.js";
 
 const UNLIMITED_LAPS_FROM = 200;
 
@@ -31,9 +31,16 @@ export class ResultCalculator {
     leaderboardData,
     resultboardData: resultboardDataInput,
   }: Options): LiveData | null {
-    const resultboardData = isPointsOrEliminationRace(
-      leaderboardData?.raceName ?? ""
-    )
+    const name = leaderboardData?.raceName ?? "";
+    if (isDualSprint(name)) {
+      return this.#calculateDualSprintResults({
+        athletes: allAthletes,
+        leaderboardData,
+        resultboardData: resultboardDataInput,
+      });
+    }
+
+    const resultboardData = isPointsOrEliminationRace(name)
       ? resultboardDataInput
       : null;
 
@@ -101,7 +108,7 @@ export class ResultCalculator {
 
     return {
       id: leaderboardData.raceID.toString(),
-      name: leaderboardData.raceName,
+      name,
       points:
         resultboardData !== null &&
         (resultboardData.Race.Type === "Points" ||
@@ -116,6 +123,66 @@ export class ResultCalculator {
           : "running",
       athletes,
       timePrecision: 3,
+    };
+  }
+
+  #calculateDualSprintResults({
+    athletes: allAthletes,
+    resultboardData,
+  }: Options): LiveData | null {
+    if (!resultboardData) {
+      return null;
+    }
+
+    if (!("TimeResults" in resultboardData)) {
+      return null;
+    }
+
+    const athleteIdByBIB = new Map<string, string>();
+    for (const athlete of allAthletes) {
+      if (!athlete.bib) {
+        continue;
+      }
+      athleteIdByBIB.set(`${athlete.bib}`, athlete.id);
+    }
+
+    const athletes: LiveData["athletes"] = {};
+    for (const competitor of resultboardData.TimeResults) {
+      if (athleteIdByBIB.has(competitor.Startnumber.toString())) {
+        athletes[athleteIdByBIB.get(competitor.Startnumber.toString())!] = {
+          rank: competitor.Place ?? 99,
+          rankOnTrack: competitor.Place ?? 99,
+          lapsDone: competitor.Place ? 1 : 0,
+          time: competitor.FinishTime
+            ? parseAthleteTime(competitor.FinishTime)
+            : undefined,
+          bestLap: competitor.FinishTime
+            ? parseAthleteTime(competitor.FinishTime)
+            : undefined,
+          lastLap: competitor.FinishTime
+            ? parseAthleteTime(competitor.FinishTime)
+            : undefined,
+          points: 0,
+          eliminated: false,
+        };
+      } else if (
+        !this.#bibsWithoutAthlete.has(competitor.Startnumber.toString())
+      ) {
+        this.#logger.warn(
+          `[ResultCalculator] Could not find athlete for bib "${competitor.Startnumber.toString()}"`
+        );
+        this.#bibsWithoutAthlete.add(competitor.Startnumber.toString());
+      }
+    }
+
+    return {
+      id: `timerace-${resultboardData.Race.ID}`,
+      name: resultboardData.Race.Name,
+      status: "running",
+      points: false,
+      start: formatISO(new Date()),
+      timePrecision: 3,
+      athletes,
     };
   }
 
@@ -211,4 +278,8 @@ function isPointsOrEliminationRace(name: string): boolean {
   return ["point", "punkte", "elimination"].some((keyword) =>
     name.toLowerCase().includes(keyword)
   );
+}
+
+function isDualSprint(name: string): boolean {
+  return name.toLowerCase().includes("dual");
 }
