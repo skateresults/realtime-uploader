@@ -275,7 +275,11 @@ function isQualiMode(leaderboardData: LeaderboardData): boolean {
 }
 
 function isPointsOrEliminationRace(name: string): boolean {
-  return ["point", "punkte", "elimination"].some((keyword) =>
+  if (name.toLowerCase().includes("sprintausscheidung")) {
+    return false;
+  }
+
+  return ["point", "punkte", "elimination", "ausscheidung"].some((keyword) =>
     name.toLowerCase().includes(keyword)
   );
 }
