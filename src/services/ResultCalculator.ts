@@ -285,5 +285,5 @@ function isPointsOrEliminationRace(name: string): boolean {
 }
 
 function isDualSprint(name: string): boolean {
-  return name.toLowerCase().includes("dual");
+  return ["dual", "sprintverfolgung", "200 m"].includes(name.toLowerCase());
 }
