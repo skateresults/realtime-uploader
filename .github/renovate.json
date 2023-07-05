@@ -1,4 +1,7 @@
 {
   "extends": ["github>skateresults/renovate-config:app"],
-  "npmrc": "@skateresults:registry=https://npm.pkg.github.com/"
+  "encrypted": {
+    "npmToken": "wcFMA/xDdHCJBTolAQ/9F8uDSzw8tg47ccHtArxxUoWE9eChO2kf2U3s6XRjmjx2Y+7tSM6aKEH9VxstQFrTOgONrxOfRt3tyNaGgxFS55jKY574RMCfY0CxsRKET3mLNvi5dRIdYGLwKsrOqfHGBBEe+F470VcWvtpFT+J+8zI0Sjfmp62oQdooYXh/EwuoAGGFfGeklnVO8DLrfVCEh5NdBk8Y7iGvX+7pvBijBDZkTpKbo6SGGbAKfu5xU8QRkJZxBT/tkjDjajrtRTP5mKRtDi8HNarrbIyfWEfq8lFOjJIjM415YabEHc53H92jCKhxwDwZzaGjDKb3nhR82Qr5hLOe71LPjUmSiunJmjASt4EtprOPPlEF+HHEmUbi7F2eolad9OcsGW1vOANeDMUH2pu8wN8s1kVIWnVxMbBZtjH/coWL1tJqogfTNVhNRF4FYIwF0rROXynyjPpDvBaQ33fV+sRmy14E01Jat1pm9BD99LMpkkcr4fGZSJL73n2vb3vpwQX2whpeLPB3BUUlYWqHH5spi/si9IVJSmOJ0Ir8U8IF59qxgtLqdmwlMTDYy+Ky9WwB59wbgjDsAtDig0XpiYdK7Dwpj0xJFPraHs6U98Y+S9jzIpasF3HhTlFmO4bQ4stt+72DHoaI27jP7z42WtaiQRvT6aSAqKnkDXWSxRK80P+fE3hK5EPSewEhypDS57+Z8ndTptFqjX+9Gw1ExdjO/ddAl+zDM9YRRUOZeuZWbjgWjxuPlibyjo52l1inQnGMNkp/ODMzV0ZNkmzrU3VKr2CusH7bCb43UHITUoiodCQqxqsIQXjFff5II/DinV4LsuXiWMHci5aykWu+6q52dzGfaQ"
+  },
+  "npmrc": "@skateresults:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=${NPM_TOKEN}"
 }
