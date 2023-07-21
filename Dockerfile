@@ -1,4 +1,4 @@
-FROM node:18.17.0-bullseye-slim
+FROM node:20.5.0-bullseye-slim
 
 RUN npm install --global pnpm
 
