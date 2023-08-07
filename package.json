@@ -42,7 +42,7 @@
     "@types/chai": "4.3.5",
     "@types/mocha": "10.0.1",
     "@types/mocha-each": "2.0.0",
-    "@types/node": "18.17.1",
+    "@types/node": "18.17.2",
     "@types/yargs": "17.0.24",
     "chai": "4.3.7",
     "mocha": "10.2.0",
