@@ -26,8 +26,8 @@ devDependencies:
     specifier: 1.0.4
     version: 1.0.4
   '@tsconfig/node18':
-    specifier: 18.2.0
-    version: 18.2.0
+    specifier: 18.2.1
+    version: 18.2.1
   '@tsconfig/strictest':
     specifier: 2.0.1
     version: 2.0.1
@@ -41,8 +41,8 @@ devDependencies:
     specifier: 2.0.0
     version: 2.0.0
   '@types/node':
-    specifier: 18.17.6
-    version: 18.17.6
+    specifier: 18.17.8
+    version: 18.17.8
   '@types/yargs':
     specifier: 17.0.24
     version: 17.0.24
@@ -57,7 +57,7 @@ devDependencies:
     version: 2.0.1
   ts-node:
     specifier: 10.9.1
-    version: 10.9.1(@types/node@18.17.6)(typescript@5.1.6)
+    version: 10.9.1(@types/node@18.17.8)(typescript@5.1.6)
   typescript:
     specifier: 5.1.6
     version: 5.1.6
@@ -120,8 +120,8 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tsconfig/node18@18.2.0:
-    resolution: {integrity: sha512-yhxwIlFVSVcMym3O31HoMnRXpoenmpIxcj4Yoes2DUpe+xCJnA7ECQP1Vw889V0jTt/2nzvpLQ/UuMYCd3JPIg==}
+  /@tsconfig/node18@18.2.1:
+    resolution: {integrity: sha512-RDDZFuofwkcKpl8Vpj5wFbY+H53xOtqK7ckEL1sXsbPwvKwDdjQf3LkHbtt9sxIHn9nWIEwkmCwBRZ6z5TKU2A==}
     dev: true
 
   /@tsconfig/strictest@2.0.1:
@@ -142,8 +142,8 @@ packages:
     resolution: {integrity: sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==}
     dev: true
 
-  /@types/node@18.17.6:
-    resolution: {integrity: sha512-fGmT/P7z7ecA6bv/ia5DlaWCH4YeZvAQMNpUhrJjtAhOhZfoxS1VLUgU2pdk63efSjQaOJWdXMuAJsws+8I6dg==}
+  /@types/node@18.17.8:
+    resolution: {integrity: sha512-Av/7MqX/iNKwT9Tr60V85NqMnsmh8ilfJoBlIVibkXfitk9Q22D9Y5mSpm+FvG5DET7EbVfB40bOiLzKgYFgPw==}
     dev: true
 
   /@types/yargs-parser@21.0.0:
@@ -706,7 +706,7 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-node@10.9.1(@types/node@18.17.6)(typescript@5.1.6):
+  /ts-node@10.9.1(@types/node@18.17.8)(typescript@5.1.6):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -725,7 +725,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 18.17.6
+      '@types/node': 18.17.8
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
