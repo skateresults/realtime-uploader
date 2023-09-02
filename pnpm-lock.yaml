@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@skateresults/api-client':
-    specifier: 1.1.0
-    version: 1.1.0
+    specifier: 1.1.1
+    version: 1.1.1
   date-fns:
     specifier: 2.30.0
     version: 2.30.0
@@ -94,10 +94,10 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@skateresults/api-client@1.1.0:
-    resolution: {integrity: sha512-VbRcue39DCqYmriaaB4JqRbUuQYloaTZopG+T7lPsIykW3j55VkWejjoXtv5f0IYNV4v7g/GQzOsIgCEHybaUQ==, tarball: https://npm.pkg.github.com/download/@skateresults/api-client/1.1.0/935900a7e8a639ba37bca48cd17b5959ac286b88}
+  /@skateresults/api-client@1.1.1:
+    resolution: {integrity: sha512-m7Ezq0ZrzmqEYUn5nlfKUpITPKsQg8dsQu7mfDFBznvSXI9WE67+Rn4trLJ4hKLE7uCLA04pB9phnjQk/qEhQw==, tarball: https://npm.pkg.github.com/download/@skateresults/api-client/1.1.1/7a757378e948a91c4a6b6ef391075d6d9dcd192c}
     dependencies:
-      ky: 0.33.3
+      ky: 1.0.0
     dev: false
 
   /@tsconfig/esm@1.0.4:
@@ -500,6 +500,11 @@ packages:
   /ky@0.33.3:
     resolution: {integrity: sha512-CasD9OCEQSFIam2U8efFK81Yeg8vNMTBUqtMOHlrcWQHqUX3HeCl9Dr31u4toV7emlH8Mymk5+9p0lL6mKb/Xw==}
     engines: {node: '>=14.16'}
+    dev: false
+
+  /ky@1.0.0:
+    resolution: {integrity: sha512-ptUup6btycj2IXLL/L5Bh/QC9ghYC2k/BsnnSf0ccEap8FpCvJ32FL5s5Potb8NkH6HOTdnVGmyI1wkHZ3mfEQ==}
+    engines: {node: '>=18'}
     dev: false
 
   /locate-path@6.0.0:
