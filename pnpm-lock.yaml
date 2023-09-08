@@ -32,8 +32,8 @@ devDependencies:
     specifier: 2.0.2
     version: 2.0.2
   '@types/chai':
-    specifier: 4.3.5
-    version: 4.3.5
+    specifier: 4.3.6
+    version: 4.3.6
   '@types/mocha':
     specifier: 10.0.1
     version: 10.0.1
@@ -129,8 +129,8 @@ packages:
     resolution: {integrity: sha512-jt4jIsWKvUvuY6adJnQJlb/UR7DdjC8CjHI/OaSQruj2yX9/K6+KOvDt/vD6udqos/FUk5Op66CvYT7TBLYO5Q==}
     dev: true
 
-  /@types/chai@4.3.5:
-    resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
+  /@types/chai@4.3.6:
+    resolution: {integrity: sha512-VOVRLM1mBxIRxydiViqPcKn6MIxZytrbMpd6RJLIWKxUNr3zux8no0Oc7kJx0WAPIitgZ0gkrDS+btlqQpubpw==}
     dev: true
 
   /@types/mocha-each@2.0.0:
