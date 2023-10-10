@@ -36,14 +36,14 @@
     "access": "public"
   },
   "devDependencies": {
-    "@tsconfig/esm": "1.0.4",
+    "@tsconfig/esm": "1.0.5",
     "@tsconfig/node18": "18.2.2",
     "@tsconfig/strictest": "2.0.2",
     "@types/chai": "4.3.6",
     "@types/mocha": "10.0.2",
     "@types/mocha-each": "2.0.1",
-    "@types/node": "18.18.3",
-    "@types/yargs": "17.0.26",
+    "@types/node": "18.18.4",
+    "@types/yargs": "17.0.28",
     "chai": "4.3.10",
     "mocha": "10.2.0",
     "mocha-each": "2.0.1",
