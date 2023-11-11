@@ -1,6 +1,6 @@
 import { createClient } from "@skateresults/api-client";
 import ky from "ky";
-import type { Config } from "../config";
+import type { Config } from "../config.js";
 
 export function createSkateResultsClient(config: Config) {
   return {

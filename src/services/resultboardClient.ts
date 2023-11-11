@@ -1,5 +1,5 @@
 import ky from "ky";
-import type { Config } from "../config";
+import type { Config } from "../config.js";
 
 export function createResultboardClient(config: Config) {
   return {
