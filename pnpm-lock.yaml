@@ -32,8 +32,8 @@ devDependencies:
     specifier: 4.3.7
     version: 4.3.7
   '@types/mocha':
-    specifier: 10.0.2
-    version: 10.0.2
+    specifier: 10.0.6
+    version: 10.0.6
   '@types/mocha-each':
     specifier: 2.0.1
     version: 2.0.1
@@ -128,11 +128,11 @@ packages:
   /@types/mocha-each@2.0.1:
     resolution: {integrity: sha512-CocXDzvmgcbWWN3DQ9IjcvhcmGlNXcO7VUWFZjXlBSoovC1TkvIivGPcsUZlWrBsgZqqs4FbrVvGg0XH3JSgSw==}
     dependencies:
-      '@types/mocha': 10.0.2
+      '@types/mocha': 10.0.6
     dev: true
 
-  /@types/mocha@10.0.2:
-    resolution: {integrity: sha512-NaHL0+0lLNhX6d9rs+NSt97WH/gIlRHmszXbQ/8/MV/eVcFNdeJ/GYhrFuUc8K7WuPhRhTSdMkCp8VMzhUq85w==}
+  /@types/mocha@10.0.6:
+    resolution: {integrity: sha512-dJvrYWxP/UcXm36Qn36fxhUKu8A/xMRXVT2cliFF1Z7UA9liG5Psj3ezNSZw+5puH2czDXRLcXQxf8JbJt0ejg==}
     dev: true
 
   /@types/node@20.9.0:
