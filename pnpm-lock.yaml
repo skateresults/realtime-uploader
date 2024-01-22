@@ -15,8 +15,8 @@ dependencies:
     specifier: 3.1.3
     version: 3.1.3
   ky:
-    specifier: 1.0.1
-    version: 1.0.1
+    specifier: 1.2.0
+    version: 1.2.0
   yargs:
     specifier: 17.7.2
     version: 17.7.2
@@ -94,7 +94,7 @@ packages:
   /@skateresults/api-client@1.1.1:
     resolution: {integrity: sha512-m7Ezq0ZrzmqEYUn5nlfKUpITPKsQg8dsQu7mfDFBznvSXI9WE67+Rn4trLJ4hKLE7uCLA04pB9phnjQk/qEhQw==, tarball: https://npm.pkg.github.com/download/@skateresults/api-client/1.1.1/7a757378e948a91c4a6b6ef391075d6d9dcd192c}
     dependencies:
-      ky: 1.0.1
+      ky: 1.2.0
     dev: false
 
   /@tsconfig/node10@1.0.9:
@@ -493,8 +493,8 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /ky@1.0.1:
-    resolution: {integrity: sha512-UvcwpQO0LOuZwG0Ti3VDo6w57KYt+r4bWEYlNaMt82hgyFtse86QtOGum1RzsZni31FndXQl6NvtDArfunt2JQ==}
+  /ky@1.2.0:
+    resolution: {integrity: sha512-dnPW+T78MuJ9tLAiF/apJV7bP7RRRCARXQxsCmsWiKLXqGtMBOgDVOFRYzCAfNe/OrRyFyor5ESgvvC+QWEqOA==}
     engines: {node: '>=18'}
     dev: false
 
