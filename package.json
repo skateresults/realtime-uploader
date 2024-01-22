@@ -47,7 +47,7 @@
     "mocha": "10.2.0",
     "mocha-each": "2.0.1",
     "ts-node": "10.9.2",
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   },
   "dependencies": {
     "@skateresults/api-client": "1.1.1",
