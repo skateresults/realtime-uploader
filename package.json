@@ -39,7 +39,7 @@
     "@tsconfig/node20": "20.1.2",
     "@tsconfig/strictest": "2.0.2",
     "@types/chai": "4.3.7",
-    "@types/mocha": "10.0.2",
+    "@types/mocha": "10.0.6",
     "@types/mocha-each": "2.0.1",
     "@types/node": "20.9.0",
     "@types/yargs": "17.0.28",
