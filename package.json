@@ -43,7 +43,7 @@
     "@types/mocha-each": "2.0.4",
     "@types/node": "20.9.0",
     "@types/yargs": "17.0.28",
-    "chai": "4.3.10",
+    "chai": "5.0.0",
     "mocha": "10.2.0",
     "mocha-each": "2.0.1",
     "ts-node": "10.9.2",
