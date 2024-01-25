@@ -44,8 +44,8 @@ devDependencies:
     specifier: 17.0.32
     version: 17.0.32
   chai:
-    specifier: 5.0.0
-    version: 5.0.0
+    specifier: 5.0.3
+    version: 5.0.3
   mocha:
     specifier: 10.2.0
     version: 10.2.0
@@ -229,8 +229,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chai@5.0.0:
-    resolution: {integrity: sha512-HO5p0oEKd5M6HEcwOkNAThAE3j960vIZvVcc0t2tI06Dd0ATu69cEnMB2wOhC5/ZyQ6m67w3ePjU/HzXsSsdBA==}
+  /chai@5.0.3:
+    resolution: {integrity: sha512-wKGCtYv2kVY5WEjKqQ3fSIZWtTFveZCtzinhTZbx3/trVkxefiwovhpU9kRVCwxvKKCEjTWXPdM1/T7zPoDgow==}
     engines: {node: '>=12'}
     dependencies:
       assertion-error: 2.0.1
