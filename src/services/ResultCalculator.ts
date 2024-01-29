@@ -9,6 +9,7 @@ import {
   getPointsByBIB,
 } from "./resultboardUtils.js";
 import type { LiveData } from "./skateResultsClient.js";
+import objectHash from "object-hash";
 
 const UNLIMITED_LAPS_FROM = 200;
 
@@ -107,7 +108,7 @@ export class ResultCalculator {
     const start = subSeconds(new Date(), elapsedSeconds);
 
     return {
-      id: leaderboardData.raceID.toString(),
+      id: objectHash({ id: leaderboardData.raceID, name }),
       name,
       points:
         resultboardData !== null &&
@@ -176,7 +177,11 @@ export class ResultCalculator {
     }
 
     return {
-      id: `timerace-${resultboardData.Race.ID}`,
+      id: objectHash({
+        type: "dual sprint",
+        id: resultboardData.Race.ID,
+        name: resultboardData.Race.Name,
+      }),
       name: resultboardData.Race.Name,
       status: "running",
       points: false,
