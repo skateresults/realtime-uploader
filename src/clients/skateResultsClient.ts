@@ -26,6 +26,8 @@ export function createSkateResultsClient(config: Config) {
   };
 }
 
+export type SkateResultsClient = ReturnType<typeof createSkateResultsClient>;
+
 export interface LiveData {
   id: string;
   name: string;

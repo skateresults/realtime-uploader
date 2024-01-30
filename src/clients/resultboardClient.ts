@@ -19,6 +19,8 @@ export function createResultboardClient(config: Config) {
   };
 }
 
+export type ResultboardClient = ReturnType<typeof createResultboardClient>;
+
 export type ResultboardData =
   | ResultboardDataTime
   | ResultboardDataPoints

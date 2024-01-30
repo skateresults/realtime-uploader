@@ -3,7 +3,7 @@ import type { Config } from "../config.js";
 
 export function createLeaderboardClient(config: Config) {
   return {
-    poll: async (): Promise<LeaderboardData | null> => {
+    poll: async (): Promise<LeaderboardData> => {
       try {
         return await ky(config.leaderboardURL).json();
       } catch (e) {
@@ -14,6 +14,8 @@ export function createLeaderboardClient(config: Config) {
     },
   };
 }
+
+export type LeaderboardClient = ReturnType<typeof createLeaderboardClient>;
 
 export interface LeaderboardData {
   raceName: string;

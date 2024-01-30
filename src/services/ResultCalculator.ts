@@ -2,13 +2,13 @@ import type { Athlete } from "@skateresults/api-client";
 import { formatISO, subSeconds } from "date-fns";
 import type { Logger } from "../Logger.js";
 import { parseTime } from "../utils/time.js";
-import type { LeaderboardData } from "./leaderboardClient.js";
-import type { ResultboardData } from "./resultboardClient.js";
+import type { LeaderboardData } from "../clients/leaderboardClient.js";
+import type { ResultboardData } from "../clients/resultboardClient.js";
 import {
   getEliminationOrderByBIB,
   getPointsByBIB,
 } from "./resultboardUtils.js";
-import type { LiveData } from "./skateResultsClient.js";
+import type { LiveData } from "../clients/skateResultsClient.js";
 import objectHash from "object-hash";
 
 const UNLIMITED_LAPS_FROM = 200;

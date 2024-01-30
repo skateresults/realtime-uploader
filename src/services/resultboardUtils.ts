@@ -2,7 +2,7 @@ import type {
   ResultboardData,
   ResultboardDataPointResult,
   ResultboardDataElimination,
-} from "./resultboardClient.js";
+} from "../clients/index.js";
 
 export function getPointsByBIB(
   resultboardData: ResultboardData | null
