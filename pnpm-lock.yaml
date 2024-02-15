@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@skateresults/api-client':
-    specifier: 1.2.0
-    version: 1.2.0
+    specifier: 1.3.0
+    version: 1.3.0
   date-fns:
     specifier: 3.3.1
     version: 3.3.1
@@ -99,8 +99,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@skateresults/api-client@1.2.0:
-    resolution: {integrity: sha512-qN31dgwDbREvjAITJy0Nv+qy3CJzZCHCR87r+qjvmyqw3MRQ63XvYQ4RLYM8gre+L33skXRMokN6gGKznWOsnQ==, tarball: https://npm.pkg.github.com/download/@skateresults/api-client/1.2.0/63e1cb89d74efae35bd98128aa0f7adfed4fefa6}
+  /@skateresults/api-client@1.3.0:
+    resolution: {integrity: sha512-jcpGD32fdbbj/GMfA9HTtohRxxp0Fcutq3MfvA0otux8CcYX0YhNwJA8+lRWmLFBccuNnKOWrs0LxIGUdA0xRw==, tarball: https://npm.pkg.github.com/download/@skateresults/api-client/1.3.0/25864909d13b9515a87bd39dfc330e8637843987}
     dependencies:
       ky: 1.2.0
     dev: false
