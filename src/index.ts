@@ -7,6 +7,7 @@ import {
   map,
   retry,
   switchMap,
+  throttleTime,
   timer,
 } from "rxjs";
 import { Logger } from "./Logger.js";
@@ -92,6 +93,7 @@ combineLatest([
         athletes,
       })
     ),
-    distinctUntilChanged((prev, cur) => isEqual(prev, cur))
+    distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
+    throttleTime(config.interval, undefined, { leading: true, trailing: true })
   )
   .subscribe(liveDataSubject);
