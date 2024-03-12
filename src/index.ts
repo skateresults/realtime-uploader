@@ -28,6 +28,7 @@ import {
 import { ResultCalculator } from "./services/ResultCalculator.js";
 import { isEqual } from "lodash-es";
 import { Event } from "@skateresults/api-client";
+import { RaceStartCache } from "./services/raceStartCache.js";
 
 const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
@@ -68,6 +69,7 @@ const resultboardObservable = createResultboardObservable({
   interval: config.interval,
   logger,
 });
+const raceStartCache = new RaceStartCache();
 
 const liveDataSubject = new Subject<LiveData | null>();
 liveDataSubject.subscribe(createLiveDataLoggerObserver({ logger }));
@@ -93,6 +95,7 @@ combineLatest([
         athletes,
       })
     ),
+    map(raceStartCache.applyCachedStartTime),
     distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
     throttleTime(config.interval, undefined, { leading: true, trailing: true })
   )
