@@ -1,6 +1,7 @@
 import {
   Observable,
   Subject,
+  catchError,
   combineLatest,
   distinctUntilChanged,
   firstValueFrom,
@@ -99,6 +100,10 @@ combineLatest([
     ),
     map(raceStartCache.applyCachedStartTime),
     map(totalLapCountCache.applyCachedTotalLapCount),
+    catchError((err, caught) => {
+      logger.error(err);
+      return caught;
+    }),
     distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
     throttleTime(config.interval, undefined, { leading: true, trailing: true })
   )
