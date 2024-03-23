@@ -38,7 +38,7 @@
   "devDependencies": {
     "@tsconfig/node20": "20.1.2",
     "@tsconfig/strictest": "2.0.3",
-    "@types/chai": "4.3.12",
+    "@types/chai": "4.3.14",
     "@types/lodash-es": "4.17.12",
     "@types/mocha": "10.0.6",
     "@types/mocha-each": "2.0.4",
