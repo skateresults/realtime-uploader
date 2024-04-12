@@ -7,7 +7,9 @@ import {
   map,
   of,
   switchMap,
+  tap,
   timer,
+
 } from "rxjs";
 import { Logger } from "../../Logger.js";
 import type { createSkateResultsClient } from "../../clients/index.js";
@@ -27,6 +29,7 @@ export function createAthletesObservable({
 }: Options): Observable<Athlete[]> {
   const getData: () => Observable<List<Athlete> | null> = () =>
     from(client.athlete.getAll(eventId)).pipe(
+      tap((response) => logger.info('Fetched athletes:', response.items.length)),
       catchError((e) => {
         logger.error(e.message);
         return of(null);
