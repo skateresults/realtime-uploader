@@ -18,4 +18,6 @@ runs:
         pnpm install --frozen-lockfile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
     - run: pnpm run build
+      shell: bash
