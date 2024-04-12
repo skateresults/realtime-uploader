@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/skateresults/realtime-uploader/compare/v1.0.1...v1.0.2) (2024-04-12)
+
+
+### Bug Fixes
+
+* log when athletes were fetched ([09df433](https://github.com/skateresults/realtime-uploader/commit/09df4331aa21033f5bf3705d8a8b5da5cf480e1b))
+
 ## [1.0.1](https://github.com/skateresults/realtime-uploader/compare/v1.0.0...v1.0.1) (2024-04-12)
 
 
