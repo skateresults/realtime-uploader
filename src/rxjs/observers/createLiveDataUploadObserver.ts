@@ -1,6 +1,7 @@
 import { Observer, noop } from "rxjs";
 import { LiveData, SkateResultsClient } from "../../clients/index.js";
 import { Logger } from "../../Logger.js";
+import { HTTPError } from "ky";
 
 type Options = {
   client: SkateResultsClient;
@@ -22,8 +23,12 @@ export function createLiveDataUploadObserver({
           await client.live.delete(eventId);
         }
       } catch (e) {
-        console.error(e);
-        logger.error("Error updating live results:", e);
+        logger.error("Error updating live results");
+        if (e instanceof HTTPError) {
+          logger.error(await e.response.text())
+        } else {
+          logger.error(e);
+        }
       }
     },
     error: noop,
