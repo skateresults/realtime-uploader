@@ -9,5 +9,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Build
-        uses: ./.github/actions/build
+      - uses: ./.github/actions/build

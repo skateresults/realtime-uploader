@@ -1,0 +1,21 @@
+name: Build
+description: Builds the image
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: pnpm/action-setup@v3.0.0
+    - name: Setup node
+      uses: actions/setup-node@v4.0.2
+      with:
+        node-version-file: ".nvmrc"
+        cache: "pnpm"
+
+    - name: Install dependencies
+      run: |
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+        pnpm install --frozen-lockfile
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: pnpm run build
