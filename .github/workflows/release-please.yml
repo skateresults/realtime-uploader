@@ -27,6 +27,8 @@ jobs:
       # Do the following steps after a release was created
       #
 
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
       - name: Build
         uses: ./.github/actions/build
         if: ${{ steps.release.outputs.release_created }}
