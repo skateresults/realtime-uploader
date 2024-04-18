@@ -23,11 +23,13 @@ export function createLiveDataUploadObserver({
           await client.live.delete(eventId);
         }
       } catch (e) {
-        logger.error("Error updating live results");
         if (e instanceof HTTPError) {
-          logger.error(await e.response.text())
+          logger.error(
+            `Error updating live results: ${e.response.status} ${e.response.statusText}`
+          );
+          logger.error(await e.response.text());
         } else {
-          logger.error(e);
+          logger.error("Error updating live results", e);
         }
       }
     },
