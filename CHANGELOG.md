@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/skateresults/realtime-uploader/compare/v1.0.4...v1.0.5) (2024-04-18)
+
+
+### Bug Fixes
+
+* do not upload race with empty name ([bae3817](https://github.com/skateresults/realtime-uploader/commit/bae3817e9d2e2571d01e59f9428cfa0a51f463ae))
+
 ## [1.0.4](https://github.com/skateresults/realtime-uploader/compare/v1.0.3...v1.0.4) (2024-04-12)
 
 
