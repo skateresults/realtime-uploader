@@ -33,6 +33,11 @@ export class ResultCalculator {
     resultboardData: resultboardDataInput,
   }: Options): LiveData | null {
     const name = leaderboardData?.raceName ?? "";
+
+    if (name.length === 0) {
+      return null;
+    }
+
     if (isDualSprint(name)) {
       return this.#calculateDualSprintResults({
         athletes: allAthletes,
