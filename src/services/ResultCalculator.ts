@@ -212,13 +212,13 @@ export class ResultCalculator {
   #getRanks(
     leaderboardData: LeaderboardData,
     resultboardData: ResultboardData | null
-  ): Map<string, number> {
+  ): Map<string, number | null> {
     const bibs = leaderboardData.competitors.map((c) => c.number.toString());
     const leaderboardRankByBIB = this.#getLeaderboardRankByBIB(leaderboardData);
 
     if (resultboardData === null || resultboardData.Race.Type === "Time") {
       return new Map(
-        bibs.map((bib) => [bib, leaderboardRankByBIB.get(bib) ?? 0])
+        bibs.map((bib) => [bib, leaderboardRankByBIB.get(bib) ?? null])
       );
     }
 
