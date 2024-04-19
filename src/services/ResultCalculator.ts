@@ -289,9 +289,13 @@ function isPointsOrEliminationRace(name: string): boolean {
     return false;
   }
 
-  return ["point", "punkte", "elimination", "ausscheidung"].some((keyword) =>
-    name.toLowerCase().includes(keyword)
-  );
+  return [
+    "point",
+    "punkte",
+    "elimination",
+    "ausscheidung",
+    "elim-", // AGI 2024 edge case
+  ].some((keyword) => name.toLowerCase().includes(keyword));
 }
 
 function isDualSprint(name: string): boolean {
