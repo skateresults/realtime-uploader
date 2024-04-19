@@ -88,9 +88,9 @@ export class ResultCalculator {
           rankOnTrack: position,
           lapsDone: competitor.lapsComplete,
           time: parseAthleteTime(competitor.totalTime),
-          bestLap: parseAthleteTime(competitor.lastLap)
+          bestLap: parseAthleteTime(competitor.bestLap)
             ? parseAthleteTime(competitor.bestLap)
-            : competitor.lapsComplete === 1
+            : competitor.lapsComplete === 1 && !isQualiMode(leaderboardData)
             ? parseAthleteTime(competitor.totalTime)
             : undefined,
           lastLap: parseAthleteTime(competitor.lastLap)
