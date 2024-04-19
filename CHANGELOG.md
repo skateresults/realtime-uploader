@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/skateresults/realtime-uploader/compare/v1.0.6...v1.1.0) (2024-04-19)
+
+
+### Features
+
+* tweak error message ([62b7666](https://github.com/skateresults/realtime-uploader/commit/62b7666ccac05ea39e1532910997ae21a68d1b11))
+
+
+### Bug Fixes
+
+* accept "elim-" as elimination indicator ([3cdda20](https://github.com/skateresults/realtime-uploader/commit/3cdda2078ce2a00a6bac39eb59a76f79e82b51d2))
+* do not fall back to rank=0 ([18580ca](https://github.com/skateresults/realtime-uploader/commit/18580cab78df19d88ed9bb63f1e2a84165dee60f))
+* don't use total time as best time in quali ([7b6fbfc](https://github.com/skateresults/realtime-uploader/commit/7b6fbfcba28220acb77024f0f3be57137f412a45))
+
 ## [1.0.6](https://github.com/skateresults/realtime-uploader/compare/v1.0.5...v1.0.6) (2024-04-18)
 
 
