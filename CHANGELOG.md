@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/skateresults/realtime-uploader/compare/v1.1.0...v1.1.1) (2024-04-19)
+
+
+### Bug Fixes
+
+* force release ([9f3883f](https://github.com/skateresults/realtime-uploader/commit/9f3883fc2cec17e7c786037aa2bb6c031d87acf3))
+
 ## [1.1.0](https://github.com/skateresults/realtime-uploader/compare/v1.0.6...v1.1.0) (2024-04-19)
 
 
