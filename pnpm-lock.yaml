@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '9.0'
 
 settings:
   autoInstallPeers: true
@@ -40,8 +40,8 @@ importers:
         specifier: 2.0.5
         version: 2.0.5
       '@types/chai':
-        specifier: 4.3.14
-        version: 4.3.14
+        specifier: 4.3.16
+        version: 4.3.16
       '@types/lodash-es':
         specifier: 4.17.12
         version: 4.17.12
@@ -113,8 +113,8 @@ packages:
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
 
-  '@types/chai@4.3.14':
-    resolution: {integrity: sha512-Wj71sXE4Q4AkGdG9Tvq1u/fquNz9EdG4LIJMwVVII7ashjD/8cf8fyIfJAjRr6YcsXnSE8cOGQPq1gqeR8z+3w==}
+  '@types/chai@4.3.16':
+    resolution: {integrity: sha512-PatH4iOdyh3MyWtmHVFXLWCCIhUbopaltqddG9BzB+gMIzee2MJrvd+jouii9Z3wzQJruGWAm7WOMjgfG8hQlQ==}
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
@@ -570,7 +570,7 @@ snapshots:
 
   '@tsconfig/strictest@2.0.5': {}
 
-  '@types/chai@4.3.14': {}
+  '@types/chai@4.3.16': {}
 
   '@types/lodash-es@4.17.12':
     dependencies:
@@ -687,6 +687,7 @@ snapshots:
   debug@4.3.4(supports-color@8.1.1):
     dependencies:
       ms: 2.1.2
+    optionalDependencies:
       supports-color: 8.1.1
 
   decamelize@4.0.0: {}
