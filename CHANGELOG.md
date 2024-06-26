@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/skateresults/realtime-uploader/compare/v1.1.2...v1.1.3) (2024-06-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ky to v1.2.4 ([#143](https://github.com/skateresults/realtime-uploader/issues/143)) ([2a313f2](https://github.com/skateresults/realtime-uploader/commit/2a313f22c48b9dce762e8a83eb60ac915a66b70e))
+* **docker:** use corepack ([2b134c2](https://github.com/skateresults/realtime-uploader/commit/2b134c231a55f53cbb4471f5d2a51a09d951b78d))
+
 ## [1.1.2](https://github.com/skateresults/realtime-uploader/compare/v1.1.1...v1.1.2) (2024-04-19)
 
 
