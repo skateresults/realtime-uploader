@@ -46,7 +46,7 @@
     "@types/object-hash": "3.0.6",
     "@types/yargs": "17.0.32",
     "chai": "5.1.1",
-    "mocha": "10.6.0",
+    "mocha": "10.7.0",
     "mocha-each": "2.0.1",
     "ts-node": "10.9.2",
     "typescript": "5.5.3"
