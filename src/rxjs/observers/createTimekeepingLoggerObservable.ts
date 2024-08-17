@@ -1,17 +1,14 @@
 import { Observer, noop } from "rxjs";
+import { TimekeepingRaceWithId } from "../../clients/index.js";
 import { Logger } from "../../Logger.js";
-import { LiveData } from "../../clients/index.js";
 
 type Options = {
   logger: Logger;
 };
 
-/**
- * @deprecated
- */
-export function createLiveDataLoggerObserver({
+export function createTimekeepingLoggerObservable({
   logger,
-}: Options): Observer<LiveData | null> {
+}: Options): Observer<TimekeepingRaceWithId | null> {
   return {
     next: (data) => {
       if (data) {
@@ -20,19 +17,18 @@ export function createLiveDataLoggerObserver({
             `'${data.name}'`,
             `(race ${data.id})`,
             "-",
-            ...(data.laps
+            ...(data.type === "lap-race"
               ? [
-                  `${data.laps.done.toString().padStart(2, " ")}/${
+                  `${data.laps.completed.toString().padStart(2, " ")}/${
                     data.laps.total
                   }`,
                 ]
               : []),
             data.status,
-            "(legacy)",
           ].join(" ")
         );
       } else {
-        logger.info("Deleting live results (legacy)");
+        logger.info("Deleting live results");
       }
     },
     error: noop,

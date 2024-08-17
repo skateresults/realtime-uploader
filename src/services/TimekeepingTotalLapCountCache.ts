@@ -1,5 +1,5 @@
-import { LiveData } from "../clients/skateResultsClient.js";
 import { differenceInSeconds } from "date-fns";
+import { TimekeepingRaceWithId } from "../clients/index.js";
 
 const CACHE_DURATION = 5;
 
@@ -9,29 +9,30 @@ type CacheData = {
 };
 
 /**
- * @deprecated
  * The total lap count of a race is calculated by `lapsToGo + lapsComplete`. Both variables are not updated at the same time, so the total lap count can be off by 1.
  * This class caches the total lap count for a few seconds to avoid flakiness
  */
-export class TotalLapCountCache {
+export class TimekeepingTotalLapCountCache {
   totalLapCountCache = new Map<string, CacheData>();
 
-  applyCachedTotalLapCount = (liveData: LiveData | null): LiveData | null => {
-    if (liveData === null) {
-      return liveData;
+  applyCachedTotalLapCount = (
+    timekeepingData: TimekeepingRaceWithId | null
+  ): TimekeepingRaceWithId | null => {
+    if (timekeepingData === null) {
+      return timekeepingData;
     }
 
-    if (liveData.status === "ready") {
-      return liveData;
+    if (timekeepingData.status === "ready") {
+      return timekeepingData;
     }
 
-    if (liveData.laps === undefined) {
-      return liveData;
+    if (timekeepingData.type !== "lap-race") {
+      return timekeepingData;
     }
 
-    let totalLapCountToUser = liveData.laps.total;
+    let totalLapCountToUser = timekeepingData.laps.total;
 
-    const cacheData = this.totalLapCountCache.get(liveData.id);
+    const cacheData = this.totalLapCountCache.get(timekeepingData.id);
     if (
       cacheData &&
       differenceInSeconds(new Date(), cacheData.lastUpdated) < CACHE_DURATION
@@ -39,15 +40,15 @@ export class TotalLapCountCache {
       totalLapCountToUser = cacheData.totalLapCount;
     }
 
-    this.totalLapCountCache.set(liveData.id, {
+    this.totalLapCountCache.set(timekeepingData.id, {
       totalLapCount: totalLapCountToUser,
       lastUpdated: new Date(),
     });
 
     return {
-      ...liveData,
+      ...timekeepingData,
       laps: {
-        ...liveData.laps,
+        ...timekeepingData.laps,
         total: totalLapCountToUser,
       },
     };

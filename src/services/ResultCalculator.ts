@@ -19,6 +19,9 @@ interface Options {
   resultboardData: ResultboardData | null;
 }
 
+/**
+ * @deprecated
+ */
 export class ResultCalculator {
   #logger: Logger;
   #bibsWithoutAthlete = new Set<string>();

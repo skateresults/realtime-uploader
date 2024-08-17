@@ -4,6 +4,7 @@ import { differenceInSeconds, parseISO } from "date-fns";
 const DIFF_THRESHOLD = 3;
 
 /**
+ * @deprecated
  * Caches the start time per race to avoid flakiness due to rounding errors.
  */
 export class RaceStartCache {

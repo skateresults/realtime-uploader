@@ -4,6 +4,7 @@ import {
   filter,
   from,
   of,
+  shareReplay,
   switchMap,
   timer,
 } from "rxjs";
@@ -34,6 +35,7 @@ export function createLeaderboardObservable({
 
   return timer(0, interval).pipe(
     switchMap(getData),
-    filter((input): input is LeaderboardData => input !== null)
+    filter((input): input is LeaderboardData => input !== null),
+    shareReplay(1)
   );
 }

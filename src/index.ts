@@ -1,3 +1,5 @@
+import { Event } from "@skateresults/api-client";
+import { isEqual } from "lodash-es";
 import {
   Observable,
   Subject,
@@ -14,6 +16,7 @@ import {
 import { Logger } from "./Logger.js";
 import {
   LiveData,
+  TimekeepingRaceWithId,
   createLeaderboardClient,
   createResultboardClient,
   createSkateResultsClient,
@@ -25,19 +28,21 @@ import {
   createLiveDataLoggerObserver,
   createLiveDataUploadObserver,
   createResultboardObservable,
+  createTimekeepingAPIObserver,
+  createTimekeepingLoggerObservable,
 } from "./rxjs/index.js";
-import { ResultCalculator } from "./services/ResultCalculator.js";
-import { isEqual } from "lodash-es";
-import { Event } from "@skateresults/api-client";
 import { RaceStartCache } from "./services/RaceStartCache.js";
+import { ResultCalculator } from "./services/ResultCalculator.js";
+import { TimekeepingDataAggregator } from "./services/TimekeepingDataAggregator.js";
+import { TimekeepingRaceStartCache } from "./services/TimekeepingRaceStartCache.js";
+import { TimekeepingTotalLapCountCache } from "./services/TimekeepingTotalLapCountCache.js";
 import { TotalLapCountCache } from "./services/TotalLapCountCache.js";
 
 const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
 const skateResultsClient = createSkateResultsClient(config);
 const leaderboardClient = createLeaderboardClient(config);
-const resultboardClient = createResultboardClient(config);
-const resultsCalculator = new ResultCalculator(logger);
+const timekeepingDataAggregator = new TimekeepingDataAggregator(logger);
 
 logger.debug("Config", config);
 
@@ -66,11 +71,50 @@ const leaderboardObservable = createLeaderboardObservable({
   interval: config.interval,
   logger,
 });
+
+const timekeepingRaceStartCache = new TimekeepingRaceStartCache();
+const timekeepingTotalLapCountCache = new TimekeepingTotalLapCountCache();
+
+const timekeepingRaceSubject = new Subject<TimekeepingRaceWithId | null>();
+timekeepingRaceSubject.subscribe(createTimekeepingLoggerObservable({ logger }));
+timekeepingRaceSubject.subscribe(
+  createTimekeepingAPIObserver({
+    client: skateResultsClient,
+    eventId: event.id,
+    logger,
+  })
+);
+
+combineLatest([athletesObservable, leaderboardObservable])
+  .pipe(
+    distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
+    map(([athletes, leaderboardData]) =>
+      timekeepingDataAggregator.calculate({
+        leaderboardData,
+        athletes,
+      })
+    ),
+    map(timekeepingRaceStartCache.applyCachedStartTime),
+    map(timekeepingTotalLapCountCache.applyCachedTotalLapCount),
+    catchError((err, caught) => {
+      logger.error(err);
+      return caught;
+    }),
+    distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
+    throttleTime(config.interval, undefined, { leading: true, trailing: true })
+  )
+  .subscribe(timekeepingRaceSubject);
+
+// Legacy implementation
+const resultboardClient = createResultboardClient(config);
+const resultsCalculator = new ResultCalculator(logger);
+
 const resultboardObservable = createResultboardObservable({
   client: resultboardClient,
   interval: config.interval,
   logger,
 });
+
 const raceStartCache = new RaceStartCache();
 const totalLapCountCache = new TotalLapCountCache();
 
@@ -83,7 +127,6 @@ liveDataSubject.subscribe(
     logger,
   })
 );
-
 combineLatest([
   athletesObservable,
   leaderboardObservable,

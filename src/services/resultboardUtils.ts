@@ -4,6 +4,9 @@ import type {
   ResultboardDataElimination,
 } from "../clients/index.js";
 
+/**
+ * @deprecated
+ */
 export function getPointsByBIB(
   resultboardData: ResultboardData | null
 ): Map<string, number> {
@@ -25,6 +28,9 @@ export function getPointsByBIB(
   return new Map<string, number>();
 }
 
+/**
+ * @deprecated
+ */
 export function getEliminationOrderByBIB(
   resultboardData: ResultboardData | null
 ): Map<string, number> {

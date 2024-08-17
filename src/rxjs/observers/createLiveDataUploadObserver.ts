@@ -9,6 +9,9 @@ type Options = {
   logger: Logger;
 };
 
+/**
+ * @deprecated
+ */
 export function createLiveDataUploadObserver({
   client,
   eventId,
@@ -25,11 +28,11 @@ export function createLiveDataUploadObserver({
       } catch (e) {
         if (e instanceof HTTPError) {
           logger.error(
-            `Error updating live results: ${e.response.status} ${e.response.statusText}`
+            `Error updating live results: ${e.response.status} ${e.response.statusText} (legacy)`
           );
           logger.error(await e.response.text());
         } else {
-          logger.error("Error updating live results", e);
+          logger.error("Error updating live results (legacy)", e);
         }
       }
     },

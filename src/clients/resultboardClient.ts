@@ -1,6 +1,9 @@
 import ky from "ky";
 import type { Config } from "../config.js";
 
+/**
+ * @deprecated
+ */
 export function createResultboardClient(config: Config) {
   return {
     poll: async (): Promise<ResultboardData | null> => {

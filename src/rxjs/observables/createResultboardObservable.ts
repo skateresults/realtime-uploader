@@ -1,4 +1,12 @@
-import { Observable, catchError, from, of, switchMap, timer } from "rxjs";
+import {
+  Observable,
+  catchError,
+  from,
+  of,
+  shareReplay,
+  switchMap,
+  timer,
+} from "rxjs";
 import type { Logger } from "../../Logger.js";
 import type {
   ResultboardClient,
@@ -11,6 +19,9 @@ interface Options {
   logger: Logger;
 }
 
+/**
+ * @deprecated
+ */
 export function createResultboardObservable({
   client,
   interval,
@@ -24,5 +35,5 @@ export function createResultboardObservable({
       })
     );
 
-  return timer(0, interval).pipe(switchMap(getData));
+  return timer(0, interval).pipe(switchMap(getData), shareReplay(1));
 }

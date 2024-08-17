@@ -6,10 +6,10 @@ import {
   from,
   map,
   of,
+  shareReplay,
   switchMap,
   tap,
   timer,
-
 } from "rxjs";
 import { Logger } from "../../Logger.js";
 import type { createSkateResultsClient } from "../../clients/index.js";
@@ -29,7 +29,9 @@ export function createAthletesObservable({
 }: Options): Observable<Athlete[]> {
   const getData: () => Observable<List<Athlete> | null> = () =>
     from(client.athlete.getAll(eventId)).pipe(
-      tap((response) => logger.info('Fetched athletes:', response.items.length)),
+      tap((response) =>
+        logger.info("Fetched athletes:", response.items.length)
+      ),
       catchError((e) => {
         logger.error(e.message);
         return of(null);
@@ -39,6 +41,7 @@ export function createAthletesObservable({
   return timer(0, INTERVAL).pipe(
     switchMap(getData),
     filter((input): input is List<Athlete> => input !== null),
-    map((response) => response.items)
+    map((response) => response.items),
+    shareReplay(1)
   );
 }
