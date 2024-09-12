@@ -46,8 +46,8 @@ importers:
         specifier: 4.17.12
         version: 4.17.12
       '@types/mocha':
-        specifier: 10.0.7
-        version: 10.0.7
+        specifier: 10.0.8
+        version: 10.0.8
       '@types/mocha-each':
         specifier: 2.0.4
         version: 2.0.4
@@ -125,8 +125,8 @@ packages:
   '@types/mocha-each@2.0.4':
     resolution: {integrity: sha512-BKan+PdIW0Kz9t2FActPvZCNkjIbdUsQIs3ceT7gPZ8xigewLuge7ajXDCe/El6O85LsVMXGn7Uhs1N3/mKPsw==}
 
-  '@types/mocha@10.0.7':
-    resolution: {integrity: sha512-GN8yJ1mNTcFcah/wKEFIJckJx9iJLoMSzWcfRRuxz/Jk+U6KQNnml+etbtxFK8lPjzOw3zp4Ha/kjSst9fsHYw==}
+  '@types/mocha@10.0.8':
+    resolution: {integrity: sha512-HfMcUmy9hTMJh66VNcmeC9iVErIZJli2bszuXc6julh5YGuRb/W5OnkHjwLNYdFlMis0sY3If5SEAp+PktdJjw==}
 
   '@types/node@20.16.1':
     resolution: {integrity: sha512-zJDo7wEadFtSyNz5QITDfRcrhqDvQI1xQNQ0VoizPjM/dVAODqqIUWbJPkvsxmTI0MYRGRikcdjMPhOssnPejQ==}
@@ -582,9 +582,9 @@ snapshots:
 
   '@types/mocha-each@2.0.4':
     dependencies:
-      '@types/mocha': 10.0.7
+      '@types/mocha': 10.0.8
 
-  '@types/mocha@10.0.7': {}
+  '@types/mocha@10.0.8': {}
 
   '@types/node@20.16.1':
     dependencies:
