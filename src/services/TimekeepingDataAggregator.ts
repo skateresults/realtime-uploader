@@ -100,7 +100,7 @@ export class TimekeepingDataAggregator {
       name: leaderboardData.raceName,
       status: getStatus(leaderboardData),
       timePrecision: 3,
-      startetAt: getStart(leaderboardData),
+      startedAt: getStart(leaderboardData),
       athletes,
     };
   }
@@ -148,7 +148,7 @@ export class TimekeepingDataAggregator {
       name: leaderboardData.raceName,
       status: getStatus(leaderboardData),
       timePrecision: 3,
-      startetAt: getStart(leaderboardData),
+      startedAt: getStart(leaderboardData),
       athletes,
       laps: {
         completed: leaderboardData.lapsComplete,

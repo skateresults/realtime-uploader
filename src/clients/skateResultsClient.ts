@@ -109,7 +109,7 @@ export type TimekeepingRaceLapRace = {
   name: string;
 
   status: "ready" | "running" | "finished";
-  startetAt: string | null;
+  startedAt: string | null;
 
   laps: {
     completed: number;
@@ -134,7 +134,7 @@ export type TimekeepingRaceFastestLap = {
   name: string;
 
   status: "ready" | "running" | "finished";
-  startetAt: string | null;
+  startedAt: string | null;
 
   athletes: {
     [athleteId: string]: {

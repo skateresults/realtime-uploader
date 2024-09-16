@@ -18,7 +18,7 @@ export class TimekeepingRaceStartCache {
 
     if (
       timekeepingRace.status === "ready" ||
-      timekeepingRace.startetAt === null
+      timekeepingRace.startedAt === null
     ) {
       return timekeepingRace;
     }
@@ -28,20 +28,20 @@ export class TimekeepingRaceStartCache {
       cachedStartTime === undefined ||
       Math.abs(
         differenceInSeconds(
-          new Date(timekeepingRace.startetAt),
+          new Date(timekeepingRace.startedAt),
           new Date(cachedStartTime)
         )
       ) > DIFF_THRESHOLD
     ) {
       this.#startTimeByRaceId.set(
         timekeepingRace.id,
-        timekeepingRace.startetAt
+        timekeepingRace.startedAt
       );
     }
 
     return {
       ...timekeepingRace,
-      startetAt: this.#startTimeByRaceId.get(timekeepingRace.id)!,
+      startedAt: this.#startTimeByRaceId.get(timekeepingRace.id)!,
     };
   };
 }
