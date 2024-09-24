@@ -40,8 +40,8 @@ importers:
         specifier: 2.0.5
         version: 2.0.5
       '@types/chai':
-        specifier: 4.3.17
-        version: 4.3.17
+        specifier: 5.0.0
+        version: 5.0.0
       '@types/lodash-es':
         specifier: 4.17.12
         version: 4.17.12
@@ -113,8 +113,8 @@ packages:
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
 
-  '@types/chai@4.3.17':
-    resolution: {integrity: sha512-zmZ21EWzR71B4Sscphjief5djsLre50M6lI622OSySTmn9DB3j+C3kWroHfBQWXbOBwbgg/M8CG/hUxDLIloow==}
+  '@types/chai@5.0.0':
+    resolution: {integrity: sha512-+DwhEHAaFPPdJ2ral3kNHFQXnTfscEEFsUxzD+d7nlcLrFK23JtNjH71RGasTcHb88b4vVi4mTyfpf8u2L8bdA==}
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
@@ -572,7 +572,7 @@ snapshots:
 
   '@tsconfig/strictest@2.0.5': {}
 
-  '@types/chai@4.3.17': {}
+  '@types/chai@5.0.0': {}
 
   '@types/lodash-es@4.17.12':
     dependencies:
