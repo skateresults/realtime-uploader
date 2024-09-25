@@ -80,7 +80,7 @@ export class TimekeepingDataAggregator {
       }
 
       athletes[athleteId] = {
-        rank: competitor.position,
+        rank: competitor.qualiPosition,
         lastSeenAt: parseAthleteTime(competitor.totalTime),
         // TODO: Use lap times from leaderboard API
         lapTimes: parseAthleteTime(competitor.lastLap)

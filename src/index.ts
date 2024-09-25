@@ -15,28 +15,20 @@ import {
 } from "rxjs";
 import { Logger } from "./Logger.js";
 import {
-  LiveData,
   TimekeepingRaceWithId,
   createLeaderboardClient,
-  createResultboardClient,
   createSkateResultsClient,
 } from "./clients/index.js";
 import { getConfig } from "./config.js";
 import {
   createAthletesObservable,
   createLeaderboardObservable,
-  createLiveDataLoggerObserver,
-  createLiveDataUploadObserver,
-  createResultboardObservable,
   createTimekeepingAPIObserver,
   createTimekeepingLoggerObservable,
 } from "./rxjs/index.js";
-import { RaceStartCache } from "./services/RaceStartCache.js";
-import { ResultCalculator } from "./services/ResultCalculator.js";
 import { TimekeepingDataAggregator } from "./services/TimekeepingDataAggregator.js";
 import { TimekeepingRaceStartCache } from "./services/TimekeepingRaceStartCache.js";
 import { TimekeepingTotalLapCountCache } from "./services/TimekeepingTotalLapCountCache.js";
-import { TotalLapCountCache } from "./services/TotalLapCountCache.js";
 
 const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
@@ -104,50 +96,3 @@ combineLatest([athletesObservable, leaderboardObservable])
     throttleTime(config.interval, undefined, { leading: true, trailing: true })
   )
   .subscribe(timekeepingRaceSubject);
-
-// Legacy implementation
-const resultboardClient = createResultboardClient(config);
-const resultsCalculator = new ResultCalculator(logger);
-
-const resultboardObservable = createResultboardObservable({
-  client: resultboardClient,
-  interval: config.interval,
-  logger,
-});
-
-const raceStartCache = new RaceStartCache();
-const totalLapCountCache = new TotalLapCountCache();
-
-const liveDataSubject = new Subject<LiveData | null>();
-liveDataSubject.subscribe(createLiveDataLoggerObserver({ logger }));
-liveDataSubject.subscribe(
-  createLiveDataUploadObserver({
-    client: skateResultsClient,
-    eventId: event.id,
-    logger,
-  })
-);
-combineLatest([
-  athletesObservable,
-  leaderboardObservable,
-  resultboardObservable,
-])
-  .pipe(
-    distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
-    map(([athletes, leaderboardData, resultboardData]) =>
-      resultsCalculator.calculate({
-        leaderboardData,
-        resultboardData,
-        athletes,
-      })
-    ),
-    map(raceStartCache.applyCachedStartTime),
-    map(totalLapCountCache.applyCachedTotalLapCount),
-    catchError((err, caught) => {
-      logger.error(err);
-      return caught;
-    }),
-    distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
-    throttleTime(config.interval, undefined, { leading: true, trailing: true })
-  )
-  .subscribe(liveDataSubject);

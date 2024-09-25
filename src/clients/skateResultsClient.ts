@@ -47,62 +47,10 @@ export function createSkateResultsClient(config: Config) {
         );
       },
     },
-    /**
-     * @deprecated
-     */
-    live: {
-      update: async (eventId: string, liveData: LiveData): Promise<void> => {
-        await ky.put(new URL(`/events/${eventId}/live`, config.apiURL), {
-          json: liveData,
-          headers: {
-            ...authHeader,
-            "X-Timestamp": new Date().toISOString(),
-          },
-        });
-      },
-      delete: async (eventId: string): Promise<void> => {
-        await ky.delete(new URL(`/events/${eventId}/live`, config.apiURL), {
-          headers: { ...authHeader },
-        });
-      },
-    },
   };
 }
 
 export type SkateResultsClient = ReturnType<typeof createSkateResultsClient>;
-
-/**
- * @deprecated
- */
-export interface LiveData {
-  id: string;
-  name: string;
-  points: boolean;
-  start: string;
-  status: "ready" | "running" | "finished";
-  laps?:
-    | {
-        done: number;
-        total: number;
-      }
-    | undefined;
-  athletes: Record<string, LiveDataAthlete>;
-  timePrecision: number;
-}
-
-/**
- * @deprecated
- */
-export interface LiveDataAthlete {
-  rank: number;
-  rankOnTrack: number;
-  time: number | undefined;
-  bestLap: number | undefined;
-  lastLap: number | undefined;
-  lapsDone: number;
-  points: number;
-  eliminated: boolean;
-}
 
 export type TimekeepingRaceLapRace = {
   type: "lap-race";

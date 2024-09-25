@@ -19,9 +19,6 @@ interface Options {
   logger: Logger;
 }
 
-/**
- * @deprecated
- */
 export function createResultboardObservable({
   client,
   interval,
