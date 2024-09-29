@@ -17,12 +17,14 @@ import { Logger } from "./Logger.js";
 import {
   TimekeepingRaceWithId,
   createLeaderboardClient,
+  createResultboardClient,
   createSkateResultsClient,
 } from "./clients/index.js";
 import { getConfig } from "./config.js";
 import {
   createAthletesObservable,
   createLeaderboardObservable,
+  createResultboardObservable,
   createTimekeepingAPIObserver,
   createTimekeepingLoggerObservable,
 } from "./rxjs/index.js";
@@ -34,6 +36,7 @@ const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
 const skateResultsClient = createSkateResultsClient(config);
 const leaderboardClient = createLeaderboardClient(config);
+const resultboardClient = createResultboardClient(config);
 const timekeepingDataAggregator = new TimekeepingDataAggregator(logger);
 
 logger.debug("Config", config);
@@ -63,6 +66,11 @@ const leaderboardObservable = createLeaderboardObservable({
   interval: config.interval,
   logger,
 });
+const resultboardObservable = createResultboardObservable({
+  client: resultboardClient,
+  interval: config.interval,
+  logger,
+});
 
 const timekeepingRaceStartCache = new TimekeepingRaceStartCache();
 const timekeepingTotalLapCountCache = new TimekeepingTotalLapCountCache();
@@ -77,13 +85,18 @@ timekeepingRaceSubject.subscribe(
   })
 );
 
-combineLatest([athletesObservable, leaderboardObservable])
+combineLatest([
+  athletesObservable,
+  leaderboardObservable,
+  resultboardObservable,
+])
   .pipe(
     distinctUntilChanged((prev, cur) => isEqual(prev, cur)),
-    map(([athletes, leaderboardData]) =>
+    map(([athletes, leaderboardData, resultboardData]) =>
       timekeepingDataAggregator.calculate({
         leaderboardData,
         athletes,
+        resultboardData,
       })
     ),
     map(timekeepingRaceStartCache.applyCachedStartTime),

@@ -9,12 +9,17 @@ import type {
 } from "../clients/skateResultsClient.js";
 import type { Logger } from "../Logger.js";
 import { parseTime } from "../utils/time.js";
+import {
+  ResultboardData,
+  ResultboardDataPointResult,
+} from "../clients/resultboardClient.js";
 
 const UNLIMITED_LAPS_FROM = 200;
 
 interface Options {
   athletes: Athlete[];
   leaderboardData: LeaderboardData | null;
+  resultboardData: ResultboardData | null;
 }
 
 export class TimekeepingDataAggregator {
@@ -28,6 +33,7 @@ export class TimekeepingDataAggregator {
   calculate({
     athletes: allAthletes,
     leaderboardData,
+    resultboardData,
   }: Options): TimekeepingRaceWithId | null {
     const name = leaderboardData?.raceName ?? "";
 
@@ -47,12 +53,14 @@ export class TimekeepingDataAggregator {
       return this.#calculateFastestLap({
         athletes: allAthletes,
         leaderboardData,
+        resultboardData,
       });
     }
 
     return this.#calculateLapRace({
       athletes: allAthletes,
       leaderboardData,
+      resultboardData,
     });
   }
 
@@ -108,6 +116,7 @@ export class TimekeepingDataAggregator {
   #calculateLapRace({
     athletes: allAthletes,
     leaderboardData,
+    resultboardData,
   }: Options): (TimekeepingRaceLapRace & { id: string }) | null {
     if (!leaderboardData) {
       return null;
@@ -154,6 +163,7 @@ export class TimekeepingDataAggregator {
         completed: leaderboardData.lapsComplete,
         total: lapsTotal,
       },
+      pointsSprints: this.#getPointsSprints(allAthletes, resultboardData),
     };
   }
 
@@ -176,6 +186,36 @@ export class TimekeepingDataAggregator {
     }
 
     return undefined;
+  }
+
+  #getPointsSprints(
+    athletes: Athlete[],
+    resultboardData: ResultboardData | null
+  ): { athleteId: string; points: number }[] | undefined {
+    if (!resultboardData) {
+      return;
+    }
+
+    if (
+      resultboardData.Race.Type !== "Points" &&
+      resultboardData.Race.Type !== "PointsElimination"
+    ) {
+      return;
+    }
+
+    const typedResultboardData = resultboardData as {
+      PointResults: ResultboardDataPointResult[];
+    };
+
+    return typedResultboardData.PointResults.filter((result) =>
+      this.#getAthleteIdByBIB(athletes, result.Startnumber.toString())
+    ).map((result) => ({
+      athleteId: this.#getAthleteIdByBIB(
+        athletes,
+        result.Startnumber.toString()
+      )!,
+      points: result.Points,
+    }));
   }
 }
 
