@@ -11,8 +11,10 @@ import type { Logger } from "../Logger.js";
 import { parseTime } from "../utils/time.js";
 import {
   ResultboardData,
+  ResultboardDataElimination,
   ResultboardDataPointResult,
 } from "../clients/resultboardClient.js";
+import { uniq } from "lodash-es";
 
 const UNLIMITED_LAPS_FROM = 200;
 
@@ -164,6 +166,7 @@ export class TimekeepingDataAggregator {
         total: lapsTotal,
       },
       pointsSprints: this.#getPointsSprints(allAthletes, resultboardData),
+      dnfs: this.#getDNFs(allAthletes, resultboardData),
     };
   }
 
@@ -210,14 +213,56 @@ export class TimekeepingDataAggregator {
     return [
       typedResultboardData.PointResults.filter((result) =>
         this.#getAthleteIdByBIB(athletes, result.Startnumber.toString())
-      ).map((result) => ({
-        athleteId: this.#getAthleteIdByBIB(
-          athletes,
-          result.Startnumber.toString()
-        )!,
-        points: result.Points,
-      })),
+      )
+        .map((result) => ({
+          athleteId: this.#getAthleteIdByBIB(
+            athletes,
+            result.Startnumber.toString()
+          )!,
+          points: result.Points,
+        }))
+        .filter((result) => !!result.athleteId),
     ];
+  }
+  #getDNFs(
+    athletes: Athlete[],
+    resultboardData: ResultboardData | null
+  ): { athleteIds: string[]; type: "dnf" | "elimination" }[] | undefined {
+    if (!resultboardData) {
+      return;
+    }
+
+    if (
+      resultboardData.Race.Type !== "Elimination" &&
+      resultboardData.Race.Type !== "PointsElimination"
+    ) {
+      return;
+    }
+
+    const typedResultboardData = resultboardData as {
+      Eliminations: ResultboardDataElimination[];
+    };
+
+    const eliminationNrs = uniq(
+      typedResultboardData.Eliminations.map(
+        (elimination) => elimination.EliminationNr
+      )
+    ).sort();
+
+    return eliminationNrs
+      .map((eliminationNr) => ({
+        athleteIds: typedResultboardData.Eliminations.filter(
+          (elimination) => elimination.EliminationNr === eliminationNr
+        ).map((elimination) =>
+          this.#getAthleteIdByBIB(athletes, elimination.Startnumber.toString())
+        ),
+        type: "elimination" as const,
+      }))
+      .map((elimination) => ({
+        athleteIds: elimination.athleteIds.filter((id): id is string => !!id),
+        type: elimination.type,
+      }))
+      .filter((elimination) => elimination.athleteIds.length > 0);
   }
 }
 

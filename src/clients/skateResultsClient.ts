@@ -76,7 +76,8 @@ export type TimekeepingRaceLapRace = {
   };
   timePrecision: number;
 
-  pointsSprints?: {athleteId: string, points: number}[][] | undefined;
+  pointsSprints?: { athleteId: string; points: number }[][] | undefined;
+  dnfs?: { athleteIds: string[]; type: "elimination" | "dnf" }[] | undefined;
 };
 
 export type TimekeepingRaceFastestLap = {
