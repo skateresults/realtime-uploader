@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.0.0](https://github.com/skateresults/realtime-uploader/compare/v1.1.2...v2.0.0) (2024-10-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove legacy API implementation
+
+### Features
+
+* remove legacy API implementation ([a0e039c](https://github.com/skateresults/realtime-uploader/commit/a0e039c3b839ddc5740faaa84607ae443efb20cd))
+* send timekeeping data to new API ([62df9d7](https://github.com/skateresults/realtime-uploader/commit/62df9d70ce4fe771b250de50d291477090371a1f))
+* upload eliminations ([d0ab2ec](https://github.com/skateresults/realtime-uploader/commit/d0ab2ec232437bfe5a1a4b5c9444ad7a2370b9ec))
+* upload points from result board ([73db4bb](https://github.com/skateresults/realtime-uploader/commit/73db4bba018c0dfb48c77d8cbfe6d258ac7fb555))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @skateresults/api-client to v1.4.0 ([#164](https://github.com/skateresults/realtime-uploader/issues/164)) ([e806526](https://github.com/skateresults/realtime-uploader/commit/e8065265f2f3d8c137974460c6ce3427b4e73cd1))
+* **deps:** update dependency date-fns to v4 ([#176](https://github.com/skateresults/realtime-uploader/issues/176)) ([b411814](https://github.com/skateresults/realtime-uploader/commit/b4118143e6fb1e31c576a0161f3bf939a5957749))
+* **deps:** update dependency ky to v1.2.4 ([#143](https://github.com/skateresults/realtime-uploader/issues/143)) ([2a313f2](https://github.com/skateresults/realtime-uploader/commit/2a313f22c48b9dce762e8a83eb60ac915a66b70e))
+* **deps:** update dependency ky to v1.5.0 ([#153](https://github.com/skateresults/realtime-uploader/issues/153)) ([4e852c7](https://github.com/skateresults/realtime-uploader/commit/4e852c7069cfa68f2c5fa912362ae16c00ca5317))
+* **deps:** update dependency ky to v1.7.0 ([#168](https://github.com/skateresults/realtime-uploader/issues/168)) ([d31912e](https://github.com/skateresults/realtime-uploader/commit/d31912e67921064791ffde1fc26192c4074f0c5c))
+* **deps:** update dependency ky to v1.7.2 ([#170](https://github.com/skateresults/realtime-uploader/issues/170)) ([d4c7ecd](https://github.com/skateresults/realtime-uploader/commit/d4c7ecdd5ecceeff83b47d88a4190e4d518dda1b))
+* **docker:** use corepack ([2b134c2](https://github.com/skateresults/realtime-uploader/commit/2b134c231a55f53cbb4471f5d2a51a09d951b78d))
+* send points sprints in correct shape ([8215760](https://github.com/skateresults/realtime-uploader/commit/821576065dce1b6948f277283bddbbb6cc5b0552))
+* typo in `startedAt` field ([bffd201](https://github.com/skateresults/realtime-uploader/commit/bffd201dc9a9370b2df63e7be0d0127a7ec2fd14))
+
 ## [1.1.2](https://github.com/skateresults/realtime-uploader/compare/v1.1.1...v1.1.2) (2024-04-19)
 
 
