@@ -191,7 +191,7 @@ export class TimekeepingDataAggregator {
   #getPointsSprints(
     athletes: Athlete[],
     resultboardData: ResultboardData | null
-  ): { athleteId: string; points: number }[] | undefined {
+  ): { athleteId: string; points: number }[][] | undefined {
     if (!resultboardData) {
       return;
     }
@@ -207,15 +207,17 @@ export class TimekeepingDataAggregator {
       PointResults: ResultboardDataPointResult[];
     };
 
-    return typedResultboardData.PointResults.filter((result) =>
-      this.#getAthleteIdByBIB(athletes, result.Startnumber.toString())
-    ).map((result) => ({
-      athleteId: this.#getAthleteIdByBIB(
-        athletes,
-        result.Startnumber.toString()
-      )!,
-      points: result.Points,
-    }));
+    return [
+      typedResultboardData.PointResults.filter((result) =>
+        this.#getAthleteIdByBIB(athletes, result.Startnumber.toString())
+      ).map((result) => ({
+        athleteId: this.#getAthleteIdByBIB(
+          athletes,
+          result.Startnumber.toString()
+        )!,
+        points: result.Points,
+      })),
+    ];
   }
 }
 
