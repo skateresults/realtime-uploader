@@ -84,12 +84,20 @@ export class TimekeepingDataAggregator {
 
     const athletes: TimekeepingRaceFastestLap["athletes"] = {};
     for (const competitor of leaderboardData.competitors) {
-      const athleteId = this.#getAthleteIdByBIB(allAthletes, competitor.number);
+      const athleteId = this.#getAthleteId(allAthletes, {
+        bib: competitor.number,
+        firstName: competitor.firstName,
+        lastName: competitor.lastName,
+      });
       if (!athleteId) {
         continue;
       }
 
       athletes[athleteId] = {
+        bib: +competitor.number,
+        firstName: competitor.firstName,
+        lastName: competitor.lastName,
+
         rank: competitor.qualiPosition,
         lastSeenAt: parseAthleteTime(competitor.totalTime),
         // TODO: Use lap times from leaderboard API
@@ -126,12 +134,19 @@ export class TimekeepingDataAggregator {
 
     const athletes: TimekeepingRaceLapRace["athletes"] = {};
     for (const competitor of leaderboardData.competitors) {
-      const athleteId = this.#getAthleteIdByBIB(allAthletes, competitor.number);
+      const athleteId = this.#getAthleteId(allAthletes, {
+        bib: competitor.number,
+        firstName: competitor.firstName,
+        lastName: competitor.lastName,
+      });
       if (!athleteId) {
         continue;
       }
 
       athletes[athleteId] = {
+        bib: +competitor.number,
+        firstName: competitor.firstName,
+        lastName: competitor.lastName,
         rank: competitor.position,
         lastSeenAt: parseAthleteTime(competitor.totalTime),
         lapsCompleted: competitor.lapsComplete,
@@ -170,7 +185,12 @@ export class TimekeepingDataAggregator {
     };
   }
 
-  #getAthleteIdByBIB(athletes: Athlete[], bib: string): string | undefined {
+  #getAthleteId(
+    athletes: Athlete[],
+    competitor: { bib: string; firstName: string; lastName: string }
+  ): string {
+    const { bib } = competitor;
+
     const athleteIdByBIB: Record<string, string> = Object.fromEntries(
       athletes
         .filter((athlete) => !!athlete.bib)
@@ -188,7 +208,11 @@ export class TimekeepingDataAggregator {
       this.#bibsWithoutAthlete.add(bib);
     }
 
-    return undefined;
+    return objectHash({
+      bib,
+      firstName: competitor.firstName,
+      lastName: competitor.lastName,
+    });
   }
 
   #getPointsSprints(
@@ -212,13 +236,18 @@ export class TimekeepingDataAggregator {
 
     return [
       typedResultboardData.PointResults.filter((result) =>
-        this.#getAthleteIdByBIB(athletes, result.Startnumber.toString())
+        this.#getAthleteId(athletes, {
+          bib: result.Startnumber.toString(),
+          firstName: result.FirstName,
+          lastName: result.LastName,
+        })
       )
         .map((result) => ({
-          athleteId: this.#getAthleteIdByBIB(
-            athletes,
-            result.Startnumber.toString()
-          )!,
+          athleteId: this.#getAthleteId(athletes, {
+            bib: result.Startnumber.toString(),
+            firstName: result.FirstName,
+            lastName: result.LastName,
+          }),
           points: result.Points,
         }))
         .filter((result) => !!result.athleteId),
@@ -254,7 +283,11 @@ export class TimekeepingDataAggregator {
         athleteIds: typedResultboardData.Eliminations.filter(
           (elimination) => elimination.EliminationNr === eliminationNr
         ).map((elimination) =>
-          this.#getAthleteIdByBIB(athletes, elimination.Startnumber.toString())
+          this.#getAthleteId(athletes, {
+            bib: elimination.Startnumber.toString(),
+            firstName: elimination.FirstName,
+            lastName: elimination.LastName,
+          })
         ),
         type: "elimination" as const,
       }))

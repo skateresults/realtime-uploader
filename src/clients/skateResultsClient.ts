@@ -72,6 +72,11 @@ export type TimekeepingRaceLapRace = {
       totalTimes: (number | null)[];
       lapsCompleted: number;
       lastSeenAt: number | null;
+
+      // fallback
+      bib: number;
+      firstName: string;
+      lastName: string;
     };
   };
   timePrecision: number;
@@ -93,6 +98,11 @@ export type TimekeepingRaceFastestLap = {
       lapTimes: (number | null)[];
       bestTime: number | null;
       lastSeenAt: number | null;
+
+      // fallback
+      bib: number;
+      firstName: string;
+      lastName: string;
     };
   };
   timePrecision: number;
