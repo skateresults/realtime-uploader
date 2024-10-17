@@ -188,8 +188,11 @@ export class TimekeepingDataAggregator {
   #getAthleteId(
     athletes: Athlete[],
     competitor: { bib: string; firstName: string; lastName: string }
-  ): string {
+  ): string | undefined {
     const { bib } = competitor;
+    if (bib === "") {
+      return;
+    }
 
     const athleteIdByBIB: Record<string, string> = Object.fromEntries(
       athletes
@@ -247,7 +250,7 @@ export class TimekeepingDataAggregator {
             bib: result.Startnumber.toString(),
             firstName: result.FirstName,
             lastName: result.LastName,
-          }),
+          })!,
           points: result.Points,
         }))
         .filter((result) => !!result.athleteId),
