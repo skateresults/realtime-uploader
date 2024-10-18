@@ -94,7 +94,7 @@ export class TimekeepingDataAggregator {
       }
 
       athletes[athleteId] = {
-        bib: isNaN(+competitor.number) ? 0 : +competitor.number,
+        bib: isNaN(+competitor.number) ? null : +competitor.number,
         firstName: competitor.firstName,
         lastName: competitor.lastName,
 
@@ -144,7 +144,7 @@ export class TimekeepingDataAggregator {
       }
 
       athletes[athleteId] = {
-        bib: isNaN(+competitor.number) ? 0 : +competitor.number,
+        bib: isNaN(+competitor.number) ? null : +competitor.number,
         firstName: competitor.firstName,
         lastName: competitor.lastName,
         rank: competitor.position,

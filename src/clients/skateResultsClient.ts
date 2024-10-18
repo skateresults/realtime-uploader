@@ -74,7 +74,7 @@ export type TimekeepingRaceLapRace = {
       lastSeenAt: number | null;
 
       // fallback
-      bib: number;
+      bib: number | null;
       firstName: string;
       lastName: string;
     };
@@ -100,7 +100,7 @@ export type TimekeepingRaceFastestLap = {
       lastSeenAt: number | null;
 
       // fallback
-      bib: number;
+      bib: number | null;
       firstName: string;
       lastName: string;
     };
