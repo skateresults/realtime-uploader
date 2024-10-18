@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/skateresults/realtime-uploader/compare/v2.1.0...v2.1.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* handle invalid non-number bibs ([cb918df](https://github.com/skateresults/realtime-uploader/commit/cb918dfac26e73bdea8f21619d26fae291ca9b28))
+
 ## [2.1.0](https://github.com/skateresults/realtime-uploader/compare/v2.0.0...v2.1.0) (2024-10-18)
 
 
