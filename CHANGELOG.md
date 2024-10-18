@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/skateresults/realtime-uploader/compare/v2.0.0...v2.1.0) (2024-10-18)
+
+
+### Features
+
+* upload data of unknown athletes ([cd772c0](https://github.com/skateresults/realtime-uploader/commit/cd772c070d6b11d5752a7d430fae2d603daec9ab))
+
+
+### Bug Fixes
+
+* filter empty bib ([cf6c9bc](https://github.com/skateresults/realtime-uploader/commit/cf6c9bc9523d537e3119c7192c214a9ddb71847f))
+
 ## [2.0.0](https://github.com/skateresults/realtime-uploader/compare/v1.1.2...v2.0.0) (2024-10-16)
 
 
