@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/skateresults/realtime-uploader/compare/v2.1.1...v2.1.2) (2024-10-18)
+
+
+### Bug Fixes
+
+* use `null` for invalid bibs ([4ea5818](https://github.com/skateresults/realtime-uploader/commit/4ea58189cf926e514efd5b38bd5f10e681e4e55a))
+
 ## [2.1.1](https://github.com/skateresults/realtime-uploader/compare/v2.1.0...v2.1.1) (2024-10-18)
 
 
