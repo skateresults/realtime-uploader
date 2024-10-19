@@ -180,7 +180,11 @@ export class TimekeepingDataAggregator {
         completed: leaderboardData.lapsComplete,
         total: lapsTotal,
       },
-      pointsSprints: this.#getPointsSprints(allAthletes, leaderboardData, resultboardData),
+      pointsSprints: this.#getPointsSprints(
+        allAthletes,
+        leaderboardData,
+        resultboardData
+      ),
       dnfs: this.#getDNFs(allAthletes, leaderboardData, resultboardData),
     };
   }
@@ -242,7 +246,7 @@ export class TimekeepingDataAggregator {
       .map((competitor) => +competitor.number)
       .filter((bib) => !isNaN(bib));
 
-    return [
+    const sprints = [
       typedResultboardData.PointResults.filter((result) =>
         allowedBIBs.includes(result.Startnumber)
       )
@@ -264,7 +268,14 @@ export class TimekeepingDataAggregator {
         .filter(({ points }) => points > 0)
         .filter((result) => !!result.athleteId),
     ];
+
+    if (sprints.length === 0) {
+      return;
+    }
+
+    return sprints;
   }
+
   #getDNFs(
     athletes: Athlete[],
     loaderboardData: LeaderboardData,
@@ -295,7 +306,7 @@ export class TimekeepingDataAggregator {
       .map((competitor) => +competitor.number)
       .filter((bib) => !isNaN(bib));
 
-    return eliminationNrs
+    const dnfs = eliminationNrs
       .map((eliminationNr) => ({
         athleteIds: typedResultboardData.Eliminations.filter(
           (elimination) => elimination.EliminationNr === eliminationNr
@@ -317,6 +328,12 @@ export class TimekeepingDataAggregator {
         type: elimination.type,
       }))
       .filter((elimination) => elimination.athleteIds.length > 0);
+
+    if (dnfs.length === 0) {
+      return;
+    }
+
+    return dnfs;
   }
 }
 
