@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.2](https://github.com/skateresults/realtime-uploader/compare/v2.1.1...v2.1.2) (2024-10-19)
+
+
+### Bug Fixes
+
+* stringify logged api data ([deebf38](https://github.com/skateresults/realtime-uploader/commit/deebf3828c8e31aa826c5ae7a2a623ae9148e40f))
+* use `null` for invalid bibs ([4ea5818](https://github.com/skateresults/realtime-uploader/commit/4ea58189cf926e514efd5b38bd5f10e681e4e55a))
+
 ## [2.1.1](https://github.com/skateresults/realtime-uploader/compare/v2.1.0...v2.1.1) (2024-10-18)
 
 
