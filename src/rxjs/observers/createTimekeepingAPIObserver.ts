@@ -33,7 +33,7 @@ export function createTimekeepingAPIObserver({
             `Error updating live results: ${e.response.status} ${e.response.statusText}`
           );
           logger.error(await e.response.text());
-          logger.info(data);
+          logger.info(JSON.stringify(data, undefined, 2));
         } else {
           logger.error("Error updating live results", e);
         }
