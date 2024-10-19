@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/skateresults/realtime-uploader/compare/v2.1.2...v2.1.3) (2024-10-19)
+
+
+### Bug Fixes
+
+* default to `0` points. Not null ([ef56c44](https://github.com/skateresults/realtime-uploader/commit/ef56c4437d2b936af5681a4209655d432765910c))
+
 ## [2.1.2](https://github.com/skateresults/realtime-uploader/compare/v2.1.1...v2.1.2) (2024-10-19)
 
 
