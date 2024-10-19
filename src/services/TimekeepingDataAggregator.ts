@@ -180,8 +180,8 @@ export class TimekeepingDataAggregator {
         completed: leaderboardData.lapsComplete,
         total: lapsTotal,
       },
-      pointsSprints: this.#getPointsSprints(allAthletes, resultboardData),
-      dnfs: this.#getDNFs(allAthletes, resultboardData),
+      pointsSprints: this.#getPointsSprints(allAthletes, leaderboardData, resultboardData),
+      dnfs: this.#getDNFs(allAthletes, leaderboardData, resultboardData),
     };
   }
 
@@ -220,6 +220,7 @@ export class TimekeepingDataAggregator {
 
   #getPointsSprints(
     athletes: Athlete[],
+    loaderboardData: LeaderboardData,
     resultboardData: ResultboardData | null
   ): { athleteId: string; points: number }[][] | undefined {
     if (!resultboardData) {
@@ -237,14 +238,21 @@ export class TimekeepingDataAggregator {
       PointResults: ResultboardDataPointResult[];
     };
 
+    const allowedBIBs = loaderboardData.competitors
+      .map((competitor) => +competitor.number)
+      .filter((bib) => !isNaN(bib));
+
     return [
       typedResultboardData.PointResults.filter((result) =>
-        this.#getAthleteId(athletes, {
-          bib: result.Startnumber.toString(),
-          firstName: result.FirstName,
-          lastName: result.LastName,
-        })
+        allowedBIBs.includes(result.Startnumber)
       )
+        .filter((result) =>
+          this.#getAthleteId(athletes, {
+            bib: result.Startnumber.toString(),
+            firstName: result.FirstName,
+            lastName: result.LastName,
+          })
+        )
         .map((result) => ({
           athleteId: this.#getAthleteId(athletes, {
             bib: result.Startnumber.toString(),
@@ -259,6 +267,7 @@ export class TimekeepingDataAggregator {
   }
   #getDNFs(
     athletes: Athlete[],
+    loaderboardData: LeaderboardData,
     resultboardData: ResultboardData | null
   ): { athleteIds: string[]; type: "dnf" | "elimination" }[] | undefined {
     if (!resultboardData) {
@@ -282,17 +291,25 @@ export class TimekeepingDataAggregator {
       )
     ).sort();
 
+    const allowedBIBs = loaderboardData.competitors
+      .map((competitor) => +competitor.number)
+      .filter((bib) => !isNaN(bib));
+
     return eliminationNrs
       .map((eliminationNr) => ({
         athleteIds: typedResultboardData.Eliminations.filter(
           (elimination) => elimination.EliminationNr === eliminationNr
-        ).map((elimination) =>
-          this.#getAthleteId(athletes, {
-            bib: elimination.Startnumber.toString(),
-            firstName: elimination.FirstName,
-            lastName: elimination.LastName,
-          })
-        ),
+        )
+          .filter((elimination) =>
+            allowedBIBs.includes(elimination.Startnumber)
+          )
+          .map((elimination) =>
+            this.#getAthleteId(athletes, {
+              bib: elimination.Startnumber.toString(),
+              firstName: elimination.FirstName,
+              lastName: elimination.LastName,
+            })
+          ),
         type: "elimination" as const,
       }))
       .map((elimination) => ({
