@@ -251,7 +251,7 @@ export class TimekeepingDataAggregator {
             firstName: result.FirstName,
             lastName: result.LastName,
           })!,
-          points: result.Points,
+          points: result.Points ?? 0,
         }))
         .filter((result) => !!result.athleteId),
     ];
