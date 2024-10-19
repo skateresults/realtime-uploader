@@ -253,6 +253,7 @@ export class TimekeepingDataAggregator {
           })!,
           points: result.Points ?? 0,
         }))
+        .filter(({ points }) => points > 0)
         .filter((result) => !!result.athleteId),
     ];
   }
