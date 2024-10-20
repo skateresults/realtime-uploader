@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.4](https://github.com/skateresults/realtime-uploader/compare/v2.1.3...v2.1.4) (2024-10-19)
+
+
+### Bug Fixes
+
+* do not upload empty sprints & dnfs ([29a5fdf](https://github.com/skateresults/realtime-uploader/commit/29a5fdfa65df8c10a9205161b650974a1095013e))
+* filter dnfs & points by athletes from leaderboard ([04eb4fd](https://github.com/skateresults/realtime-uploader/commit/04eb4fdd8a4fcd816428f2b25ed46af88f11f477))
+* only upload points &gt; 0 ([ff562a7](https://github.com/skateresults/realtime-uploader/commit/ff562a7b102b924ccce66c46700550a33e96141e))
+
 ## [2.1.3](https://github.com/skateresults/realtime-uploader/compare/v2.1.2...v2.1.3) (2024-10-19)
 
 
