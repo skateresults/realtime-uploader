@@ -351,7 +351,12 @@ function parseAthleteTime(str: string): number | null {
 }
 
 function isQualiMode(leaderboardData: LeaderboardData): boolean {
-  return leaderboardData.lapsToGo > UNLIMITED_LAPS_FROM;
+  return (
+    leaderboardData.lapsToGo > UNLIMITED_LAPS_FROM ||
+    ["dobbin", "agility"].some((word) =>
+      leaderboardData.raceName.toLowerCase().includes(word)
+    )
+  );
 }
 
 function getStatus(
