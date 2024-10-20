@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.5](https://github.com/skateresults/realtime-uploader/compare/v2.1.4...v2.1.5) (2024-10-20)
+
+
+### Bug Fixes
+
+* treat agility as quali ([1d6b05a](https://github.com/skateresults/realtime-uploader/commit/1d6b05a519ef9932751998c12b8e4635ce39e45d))
+
 ## [2.1.4](https://github.com/skateresults/realtime-uploader/compare/v2.1.3...v2.1.4) (2024-10-19)
 
 
