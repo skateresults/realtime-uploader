@@ -262,11 +262,14 @@ export class TimekeepingDataAggregator {
             bib: result.Startnumber.toString(),
             firstName: result.FirstName,
             lastName: result.LastName,
-          })!,
+          }),
           points: result.Points ?? 0,
         }))
         .filter(({ points }) => points > 0)
-        .filter((result) => !!result.athleteId),
+        .filter(
+          (result): result is { points: number; athleteId: string } =>
+            !!result.athleteId
+        ),
     ];
 
     if (sprints.length === 0) {
