@@ -320,12 +320,9 @@ export class TimekeepingDataAggregator {
               firstName: elimination.FirstName,
               lastName: elimination.LastName,
             })
-          ),
+          )
+          .filter((id): id is string => !!id),
         type: "elimination" as const,
-      }))
-      .map((elimination) => ({
-        athleteIds: elimination.athleteIds.filter((id): id is string => !!id),
-        type: elimination.type,
       }))
       .filter((elimination) => elimination.athleteIds.length > 0);
 
