@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/skateresults/realtime-uploader/compare/v2.1.5...v2.2.0) (2024-12-06)
+
+
+### Features
+
+* update node.js to v22 ([ddda5dc](https://github.com/skateresults/realtime-uploader/commit/ddda5dc02a55207f5977263eba248921d2e98ee4))
+
 ## [2.1.5](https://github.com/skateresults/realtime-uploader/compare/v2.1.4...v2.1.5) (2024-10-20)
 
 
