@@ -10,6 +10,7 @@ import type {
 import type { Logger } from "../Logger.js";
 import { parseTime } from "../utils/time.js";
 import {
+  PointsLapList,
   ResultboardData,
   ResultboardDataElimination,
   ResultboardDataPointResult,
@@ -240,37 +241,44 @@ export class TimekeepingDataAggregator {
 
     const typedResultboardData = resultboardData as {
       PointResults: ResultboardDataPointResult[];
+      PointsLapList: PointsLapList;
     };
 
     const allowedBIBs = loaderboardData.competitors
       .map((competitor) => +competitor.number)
       .filter((bib) => !isNaN(bib));
 
-    const sprints = [
-      typedResultboardData.PointResults.filter((result) =>
-        allowedBIBs.includes(result.Startnumber)
+    const sprints: {
+      points: number;
+      athleteId: string;
+    }[][] = Object.entries(typedResultboardData.PointsLapList)
+      .toSorted(
+        ([sprintIndexA], [sprintIndexB]) => +sprintIndexA - +sprintIndexB
       )
-        .filter((result) =>
-          this.#getAthleteId(athletes, {
-            bib: result.Startnumber.toString(),
-            firstName: result.FirstName,
-            lastName: result.LastName,
-          })
-        )
-        .map((result) => ({
-          athleteId: this.#getAthleteId(athletes, {
-            bib: result.Startnumber.toString(),
-            firstName: result.FirstName,
-            lastName: result.LastName,
-          }),
-          points: result.Points ?? 0,
-        }))
-        .filter(({ points }) => points > 0)
-        .filter(
-          (result): result is { points: number; athleteId: string } =>
-            !!result.athleteId
-        ),
-    ];
+      .map(([_, sprint]) =>
+        Object.entries(sprint)
+          .toSorted(([bibA], [bibB]) => +bibA - +bibB)
+          .filter(([bib]) => allowedBIBs.includes(+bib))
+          .map(([bib, points]) => ({
+            points,
+            pointsResult: typedResultboardData.PointResults.find(
+              (result) => result.Startnumber === +bib
+            ),
+          }))
+          .filter(({ pointsResult }) => !!pointsResult)
+          .map(({ pointsResult, points }) => ({
+            athleteId: this.#getAthleteId(athletes, {
+              bib: pointsResult!.Startnumber.toString(),
+              firstName: pointsResult!.FirstName,
+              lastName: pointsResult!.LastName,
+            }),
+            points,
+          }))
+          .filter(
+            (result): result is { points: number; athleteId: string } =>
+              !!result.athleteId
+          )
+      );
 
     if (sprints.length === 0) {
       return;

@@ -39,6 +39,7 @@ export interface ResultboardDataTime {
 export interface ResultboardDataPoints {
   Race: ResultboardDataRace<"Points">;
   PointResults: ResultboardDataPointResult[];
+  PointsLapList: PointsLapList;
   Eliminations: [];
   FinishOrder: [];
   EliminationResults: [];
@@ -55,6 +56,7 @@ export interface ResultboardDataElimination {
 export interface ResultboardDataPointsElimination {
   Race: ResultboardDataRace<"PointsElimination">;
   PointResults: ResultboardDataPointResult[];
+  PointsLapList: PointsLapList;
   Eliminations: ResultboardDataElimination[];
   FinishOrder: ResultboardDataFinishOrder[];
 }
@@ -107,3 +109,9 @@ export interface ResultboardDataTimeResult {
   LastName: string;
   FinishTime: string | null;
 }
+
+export type PointsLapList = {
+  [sprint: string]: {
+    [bib: string]: number;
+  };
+};
