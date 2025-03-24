@@ -36,7 +36,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/node20": "20.1.5",
     "@tsconfig/strictest": "2.0.5",
     "@types/chai": "5.0.1",
     "@types/lodash-es": "4.17.12",
