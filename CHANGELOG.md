@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/skateresults/realtime-uploader/compare/v2.2.0...v2.2.1) (2025-05-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ky to v1.8.1 ([#213](https://github.com/skateresults/realtime-uploader/issues/213)) ([a7ce686](https://github.com/skateresults/realtime-uploader/commit/a7ce68670ba4ddcd827c3b7808c8862442630ef2))
+
 ## [2.2.0](https://github.com/skateresults/realtime-uploader/compare/v2.1.5...v2.2.0) (2025-05-02)
 
 
