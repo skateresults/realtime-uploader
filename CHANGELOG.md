@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.0](https://github.com/skateresults/realtime-uploader/compare/v2.1.5...v2.2.0) (2025-05-02)
+
+
+### Features
+
+* parse & upload individual sprints ([0d6d843](https://github.com/skateresults/realtime-uploader/commit/0d6d843260c486fe950e1268e1e32f6f3869f541))
+* update node.js to v22 ([ddda5dc](https://github.com/skateresults/realtime-uploader/commit/ddda5dc02a55207f5977263eba248921d2e98ee4))
+
+
+### Bug Fixes
+
+* **deps:** update dependency ky to v1.7.5 ([#203](https://github.com/skateresults/realtime-uploader/issues/203)) ([91dbdd2](https://github.com/skateresults/realtime-uploader/commit/91dbdd23de07cc9fc1f5a062b731ca6b03ded942))
+* send update requests in parallel ([830945e](https://github.com/skateresults/realtime-uploader/commit/830945e5f5d459f24a2792c203376f9065a6f426))
+
 ## [2.1.5](https://github.com/skateresults/realtime-uploader/compare/v2.1.4...v2.1.5) (2024-10-20)
 
 
