@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/skateresults/realtime-uploader/compare/v2.2.1...v2.2.2) (2025-05-02)
+
+
+### Bug Fixes
+
+* target typescript to node 22 ([c2708a7](https://github.com/skateresults/realtime-uploader/commit/c2708a797f412df78f4d31283dd81100cc284873))
+
 ## [2.2.1](https://github.com/skateresults/realtime-uploader/compare/v2.2.0...v2.2.1) (2025-05-02)
 
 
