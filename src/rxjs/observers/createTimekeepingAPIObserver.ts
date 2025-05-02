@@ -22,8 +22,10 @@ export function createTimekeepingAPIObserver({
       try {
         if (data) {
           const { id, ...rest } = data;
-          await client.timekeepingRace.update(eventId, data.id, rest);
-          await client.timekeepingCurrentRaces.update(eventId, [data.id]);
+          await Promise.all([
+            client.timekeepingRace.update(eventId, data.id, rest),
+            client.timekeepingCurrentRaces.update(eventId, [data.id]),
+          ]);
         } else {
           await client.timekeepingCurrentRaces.update(eventId, []);
         }
