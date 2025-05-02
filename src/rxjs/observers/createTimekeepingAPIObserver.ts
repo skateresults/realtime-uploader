@@ -22,10 +22,9 @@ export function createTimekeepingAPIObserver({
       try {
         if (data) {
           const { id, ...rest } = data;
-          await Promise.all([
-            client.timekeepingRace.update(eventId, data.id, rest),
-            client.timekeepingCurrentRaces.update(eventId, [data.id]),
-          ]);
+          // Needs to be updated in order. Otherwise, the API will throw an error if the race does not exist
+          await client.timekeepingRace.update(eventId, data.id, rest);
+          await client.timekeepingCurrentRaces.update(eventId, [data.id]);
         } else {
           await client.timekeepingCurrentRaces.update(eventId, []);
         }
