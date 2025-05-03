@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.3](https://github.com/skateresults/realtime-uploader/compare/v2.2.2...v2.2.3) (2025-05-03)
+
+
+### Bug Fixes
+
+* sort athleteIds of DNFs ([6800e93](https://github.com/skateresults/realtime-uploader/commit/6800e938fb9f5feba979b31e99487a336a3239f8))
+* sort eliminations correctly ([6ff7b00](https://github.com/skateresults/realtime-uploader/commit/6ff7b003930ec98d0c105c20f8ba227c58622b72))
+
 ## [2.2.2](https://github.com/skateresults/realtime-uploader/compare/v2.2.1...v2.2.2) (2025-05-02)
 
 
