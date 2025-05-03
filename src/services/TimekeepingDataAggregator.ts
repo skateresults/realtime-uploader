@@ -309,9 +309,9 @@ export class TimekeepingDataAggregator {
 
     const eliminationNrs = uniq(
       typedResultboardData.Eliminations.map(
-        (elimination) => elimination.EliminationNr
+        (elimination) => +elimination.EliminationNr
       )
-    ).sort();
+    ).sort((a, b) => a - b);
 
     const allowedBIBs = loaderboardData.competitors
       .map((competitor) => +competitor.number)
