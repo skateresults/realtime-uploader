@@ -332,7 +332,8 @@ export class TimekeepingDataAggregator {
               lastName: elimination.LastName,
             })
           )
-          .filter((id): id is string => !!id),
+          .filter((id): id is string => !!id)
+          .sort((a, b) => a.localeCompare(b)),
         type: "elimination" as const,
       }))
       .filter((elimination) => elimination.athleteIds.length > 0);
