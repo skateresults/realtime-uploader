@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/skateresults/realtime-uploader/compare/v2.2.3...v2.3.0) (2025-10-19)
+
+
+### Features
+
+* handle "parcours" as quali ([9a0220b](https://github.com/skateresults/realtime-uploader/commit/9a0220ba9f8c09aea76f900a6af0eb6ee50e9f48))
+
 ## [2.2.3](https://github.com/skateresults/realtime-uploader/compare/v2.2.2...v2.2.3) (2025-05-03)
 
 
