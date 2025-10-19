@@ -362,7 +362,7 @@ function parseAthleteTime(str: string): number | null {
 function isQualiMode(leaderboardData: LeaderboardData): boolean {
   return (
     leaderboardData.lapsToGo > UNLIMITED_LAPS_FROM ||
-    ["dobbin", "agility"].some((word) =>
+    ["dobbin", "agility", "parcours"].some((word) =>
       leaderboardData.raceName.toLowerCase().includes(word)
     )
   );
