@@ -18,8 +18,8 @@ importers:
         specifier: 3.1.3
         version: 3.1.3
       ky:
-        specifier: 1.8.1
-        version: 1.8.1
+        specifier: 1.13.0
+        version: 1.13.0
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
@@ -379,8 +379,8 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
-  ky@1.8.1:
-    resolution: {integrity: sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw==}
+  ky@1.13.0:
+    resolution: {integrity: sha512-JeNNGs44hVUp2XxO3FY9WV28ymG7LgO4wju4HL/dCq1A8eKDcFgVrdCn1ssn+3Q/5OQilv5aYsL0DMt5mmAV9w==}
     engines: {node: '>=18'}
 
   locate-path@6.0.0:
@@ -632,7 +632,7 @@ snapshots:
 
   '@skateresults/api-client@1.4.0':
     dependencies:
-      ky: 1.8.1
+      ky: 1.13.0
 
   '@tsconfig/node10@1.0.9': {}
 
@@ -864,7 +864,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  ky@1.8.1: {}
+  ky@1.13.0: {}
 
   locate-path@6.0.0:
     dependencies:
