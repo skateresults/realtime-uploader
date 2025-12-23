@@ -56,7 +56,7 @@
     "date-fns": "4.1.0",
     "fast-deep-equal": "3.1.3",
     "ky": "1.14.1",
-    "lodash-es": "4.17.21",
+    "lodash-es": "4.17.22",
     "object-hash": "3.0.0",
     "rxjs": "7.8.1",
     "yargs": "18.0.0"
