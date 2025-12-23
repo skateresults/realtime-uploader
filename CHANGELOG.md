@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/skateresults/realtime-uploader/compare/v2.2.3...v2.3.0) (2025-12-23)
+
+
+### Features
+
+* handle "parcours" as quali ([9a0220b](https://github.com/skateresults/realtime-uploader/commit/9a0220ba9f8c09aea76f900a6af0eb6ee50e9f48))
+
+
+### Bug Fixes
+
+* **deps:** update dependency ky to v1.14.1 ([#221](https://github.com/skateresults/realtime-uploader/issues/221)) ([e5cb0af](https://github.com/skateresults/realtime-uploader/commit/e5cb0af783d5680c37f2cd4347b9bb1153446a5b))
+* **deps:** update dependency yargs to v18 ([#220](https://github.com/skateresults/realtime-uploader/issues/220)) ([66215fd](https://github.com/skateresults/realtime-uploader/commit/66215fd2be2ce5950329b623c5b48e4f7d9ac613))
+
 ## [2.2.3](https://github.com/skateresults/realtime-uploader/compare/v2.2.2...v2.2.3) (2025-05-03)
 
 
