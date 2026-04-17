@@ -9,7 +9,17 @@ export function createResultboardClient(config: Config) {
       }
 
       try {
-        return await ky(config.resultboardURL).json();
+        const data = await ky(
+          config.resultboardURL,
+        ).json<ResultboardData | null>();
+
+        // @ts-expect-error - The incoming data is broken in the new software
+        if (data?.Race?.Type === "Point") {
+          // @ts-expect-error - The incoming data is broken in the new software
+          data.Race.Type = "Points";
+        }
+
+        return data;
       } catch (e) {
         throw new Error("Could not fetch resultboard", {
           cause: e,
@@ -62,7 +72,7 @@ export interface ResultboardDataPointsElimination {
 }
 
 export interface ResultboardDataRace<
-  Type extends "Time" | "Elimination" | "Points" | "PointsElimination"
+  Type extends "Time" | "Elimination" | "Points" | "PointsElimination",
 > {
   Name: string;
   Type: Type;
