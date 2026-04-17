@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/skateresults/realtime-uploader/compare/v2.3.0...v2.3.1) (2026-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency lodash-es to v4.18.1 [security] ([#241](https://github.com/skateresults/realtime-uploader/issues/241)) ([cc82c36](https://github.com/skateresults/realtime-uploader/commit/cc82c36f1526ce913b8f6d198f165a23d729e749))
+
 ## [2.3.0](https://github.com/skateresults/realtime-uploader/compare/v2.2.3...v2.3.0) (2026-04-17)
 
 
