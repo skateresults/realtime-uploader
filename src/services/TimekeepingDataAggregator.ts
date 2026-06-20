@@ -16,6 +16,7 @@ import {
   ResultboardDataPointResult,
 } from "../clients/resultboardClient.js";
 import { uniq } from "lodash-es";
+import type { RaceRef } from "../clients/raceRef.js";
 
 const UNLIMITED_LAPS_FROM = 200;
 
@@ -117,6 +118,7 @@ export class TimekeepingDataAggregator {
       id: getRaceId(leaderboardData),
       type: "fastest-lap",
       name: leaderboardData.raceName,
+      ...(leaderboardData.raceRef ? { raceRef: leaderboardData.raceRef } : {}),
       status: getStatus(leaderboardData),
       timePrecision: 3,
       startedAt: getStart(leaderboardData),
@@ -169,10 +171,26 @@ export class TimekeepingDataAggregator {
       return null;
     }
 
+    const matchingResultboardData = getMatchingResultboardData(
+      leaderboardData,
+      resultboardData
+    );
+    const pointsSprints = this.#getPointsSprints(
+      allAthletes,
+      leaderboardData,
+      matchingResultboardData
+    );
+    const dnfs = this.#getDNFs(
+      allAthletes,
+      leaderboardData,
+      matchingResultboardData
+    );
+
     return {
       id: getRaceId(leaderboardData),
       type: "lap-race",
       name: leaderboardData.raceName,
+      ...(leaderboardData.raceRef ? { raceRef: leaderboardData.raceRef } : {}),
       status: getStatus(leaderboardData),
       timePrecision: 3,
       startedAt: getStart(leaderboardData),
@@ -181,12 +199,8 @@ export class TimekeepingDataAggregator {
         completed: leaderboardData.lapsComplete,
         total: lapsTotal,
       },
-      pointsSprints: this.#getPointsSprints(
-        allAthletes,
-        leaderboardData,
-        resultboardData
-      ),
-      dnfs: this.#getDNFs(allAthletes, leaderboardData, resultboardData),
+      ...(pointsSprints ? { pointsSprints } : {}),
+      ...(dnfs ? { dnfs } : {}),
     };
   }
 
@@ -397,4 +411,31 @@ function getRaceId(leaderboardData: LeaderboardData): string {
     id: leaderboardData.raceID,
     name: leaderboardData.raceName,
   });
+}
+
+function getMatchingResultboardData(
+  leaderboardData: LeaderboardData,
+  resultboardData: ResultboardData | null
+): ResultboardData | null {
+  if (!resultboardData) {
+    return null;
+  }
+
+  if (!leaderboardData.raceRef || !resultboardData.Race.raceRef) {
+    return resultboardData;
+  }
+
+  if (isSameRaceRef(leaderboardData.raceRef, resultboardData.Race.raceRef)) {
+    return resultboardData;
+  }
+
+  return null;
+}
+
+function isSameRaceRef(a: RaceRef, b: RaceRef): boolean {
+  return (
+    a.ageGroup === b.ageGroup &&
+    a.competition === b.competition &&
+    a.race === b.race
+  );
 }

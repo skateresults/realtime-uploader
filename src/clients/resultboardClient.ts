@@ -1,5 +1,6 @@
 import ky from "ky";
 import type { Config } from "../config.js";
+import type { RaceRef } from "./raceRef.js";
 
 export function createResultboardClient(config: Config) {
   return {
@@ -77,6 +78,7 @@ export interface ResultboardDataRace<
   Name: string;
   Type: Type;
   ID: number;
+  raceRef?: RaceRef;
 }
 
 export interface ResultboardDataPointResult {

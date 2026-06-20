@@ -1,6 +1,7 @@
 import { createClient } from "@skateresults/api-client";
 import ky from "ky";
 import type { Config } from "../config.js";
+import type { RaceRef } from "./raceRef.js";
 
 export function createSkateResultsClient(config: Config) {
   const authHeader = { Authorization: `Bearer ${config.token}` };
@@ -55,6 +56,7 @@ export type SkateResultsClient = ReturnType<typeof createSkateResultsClient>;
 export type TimekeepingRaceLapRace = {
   type: "lap-race";
   name: string;
+  raceRef?: RaceRef;
 
   status: "ready" | "running" | "finished";
   startedAt: string | null;
@@ -88,6 +90,7 @@ export type TimekeepingRaceLapRace = {
 export type TimekeepingRaceFastestLap = {
   type: "fastest-lap";
   name: string;
+  raceRef?: RaceRef;
 
   status: "ready" | "running" | "finished";
   startedAt: string | null;

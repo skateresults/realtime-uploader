@@ -1,5 +1,6 @@
 import ky from "ky";
 import type { Config } from "../config.js";
+import type { RaceRef } from "./raceRef.js";
 
 export function createLeaderboardClient(config: Config) {
   return {
@@ -20,6 +21,7 @@ export type LeaderboardClient = ReturnType<typeof createLeaderboardClient>;
 export interface LeaderboardData {
   raceName: string;
   raceID: number;
+  raceRef?: RaceRef;
   flagStatus: "PURPLE" | "GREEN" | "YELLOW" | "RED" | "FINISH" | "NONE";
   elapsedTime: string;
   timeOfDay: string;
