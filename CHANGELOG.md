@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.0](https://github.com/skateresults/realtime-uploader/compare/v2.4.0...v2.5.0) (2026-06-21)
+
+
+### Features
+
+* Use raceRefs for timekeeping data matching ([2dfbb2e](https://github.com/skateresults/realtime-uploader/commit/2dfbb2ea53ac6c5d9895eff2b89f3af75f8a5774))
+
+
+### Bug Fixes
+
+* **deps:** update dependency ky to v1.14.3 ([#235](https://github.com/skateresults/realtime-uploader/issues/235)) ([7fd7356](https://github.com/skateresults/realtime-uploader/commit/7fd73566f083a42bb69e0d146120432130e92568))
+
 ## [2.4.0](https://github.com/skateresults/realtime-uploader/compare/v2.3.0...v2.4.0) (2026-06-20)
 
 
