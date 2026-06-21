@@ -1,4 +1,4 @@
-FROM node:22.21.1-bullseye-slim
+FROM node:22.23.0-bullseye-slim
 
 RUN corepack enable pnpm
 
