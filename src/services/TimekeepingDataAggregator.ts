@@ -118,7 +118,7 @@ export class TimekeepingDataAggregator {
       id: getRaceId(leaderboardData),
       type: "fastest-lap",
       name: leaderboardData.raceName,
-      ...(leaderboardData.raceRef ? { raceRef: leaderboardData.raceRef } : {}),
+      raceRefs: leaderboardData.raceRefs,
       status: getStatus(leaderboardData),
       timePrecision: 3,
       startedAt: getStart(leaderboardData),
@@ -190,7 +190,7 @@ export class TimekeepingDataAggregator {
       id: getRaceId(leaderboardData),
       type: "lap-race",
       name: leaderboardData.raceName,
-      ...(leaderboardData.raceRef ? { raceRef: leaderboardData.raceRef } : {}),
+      raceRefs: leaderboardData.raceRefs,
       status: getStatus(leaderboardData),
       timePrecision: 3,
       startedAt: getStart(leaderboardData),
@@ -421,15 +421,19 @@ function getMatchingResultboardData(
     return null;
   }
 
-  if (!leaderboardData.raceRef || !resultboardData.Race.raceRef) {
-    return resultboardData;
-  }
-
-  if (isSameRaceRef(leaderboardData.raceRef, resultboardData.Race.raceRef)) {
+  if (isSameRaceRefs(leaderboardData.raceRefs, resultboardData.Race.raceRefs)) {
     return resultboardData;
   }
 
   return null;
+}
+
+function isSameRaceRefs(a: RaceRef[], b: RaceRef[]): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  return a.every((raceRef, index) => isSameRaceRef(raceRef, b[index]!));
 }
 
 function isSameRaceRef(a: RaceRef, b: RaceRef): boolean {

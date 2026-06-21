@@ -56,7 +56,7 @@ export type SkateResultsClient = ReturnType<typeof createSkateResultsClient>;
 export type TimekeepingRaceLapRace = {
   type: "lap-race";
   name: string;
-  raceRef?: RaceRef;
+  raceRefs: RaceRef[];
 
   status: "ready" | "running" | "finished";
   startedAt: string | null;
@@ -90,7 +90,7 @@ export type TimekeepingRaceLapRace = {
 export type TimekeepingRaceFastestLap = {
   type: "fastest-lap";
   name: string;
-  raceRef?: RaceRef;
+  raceRefs: RaceRef[];
 
   status: "ready" | "running" | "finished";
   startedAt: string | null;

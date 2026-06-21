@@ -21,7 +21,7 @@ export type LeaderboardClient = ReturnType<typeof createLeaderboardClient>;
 export interface LeaderboardData {
   raceName: string;
   raceID: number;
-  raceRef?: RaceRef;
+  raceRefs: RaceRef[];
   flagStatus: "PURPLE" | "GREEN" | "YELLOW" | "RED" | "FINISH" | "NONE";
   elapsedTime: string;
   timeOfDay: string;
