@@ -1,5 +1,6 @@
 import { Event } from "@skateresults/api-client";
 import { isEqual } from "lodash-es";
+import { createRequire } from "node:module";
 import {
   Observable,
   Subject,
@@ -32,6 +33,9 @@ import { TimekeepingDataAggregator } from "./services/TimekeepingDataAggregator.
 import { TimekeepingRaceStartCache } from "./services/TimekeepingRaceStartCache.js";
 import { TimekeepingTotalLapCountCache } from "./services/TimekeepingTotalLapCountCache.js";
 
+const require = createRequire(import.meta.url);
+const { version } = require("../package.json") as { version: string };
+
 const config = getConfig(process.argv);
 const logger = new Logger(console, config.verbose);
 const skateResultsClient = createSkateResultsClient(config);
@@ -39,6 +43,7 @@ const leaderboardClient = createLeaderboardClient(config);
 const resultboardClient = createResultboardClient(config);
 const timekeepingDataAggregator = new TimekeepingDataAggregator(logger);
 
+logger.info(`Realtime uploader v${version}`);
 logger.debug("Config", config);
 
 logger.info("Fetching event...");
