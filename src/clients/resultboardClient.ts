@@ -78,7 +78,7 @@ export interface ResultboardDataRace<
   Name: string;
   Type: Type;
   ID: number;
-  raceRefs: RaceRef[];
+  raceRefs?: RaceRef[];
 }
 
 export interface ResultboardDataPointResult {
