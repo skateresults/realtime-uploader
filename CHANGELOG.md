@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0](https://github.com/skateresults/realtime-uploader/compare/v2.5.0...v2.6.0) (2026-06-24)
+
+
+### Features
+
+* log version on start ([38b6553](https://github.com/skateresults/realtime-uploader/commit/38b6553850f4a5e3ea6815528f71ed5d375da046))
+* Make raceRefs optional in timekeeping clients ([6abaaa9](https://github.com/skateresults/realtime-uploader/commit/6abaaa97e80aa89875615f5e6036899d07b9c05b))
+
 ## [2.5.0](https://github.com/skateresults/realtime-uploader/compare/v2.4.0...v2.5.0) (2026-06-21)
 
 
